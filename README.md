@@ -1,3 +1,5 @@
-# mo412
+# MO412 - Algoritmos em Grafos
 ### Trabalho 01: Algoritmos - Árvore Geradoras Mínima (mst)
-### TRabalho 02: Algoritmos - Caminhos mínimos
+#### prim e kruskal
+### Trabalho 02: Algoritmos - Caminhos mínimos
+#### bellman-ford, dijkstra, floyd-warshall e johnson
