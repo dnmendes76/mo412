@@ -1,3 +1,3 @@
 compila:
-	@g++ sources/main.cpp sources/kruskall.cpp -o main -O2
+	@g++ sources/main.cpp sources/kruskal.cpp -o main -O2
 	@echo "Executável gerado!"
