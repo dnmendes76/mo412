@@ -17,6 +17,6 @@ typedef vector<aresta_t>v_aresta;
 typedef struct { v_aresta arestas; int ordem; }lista_arestas_t;
 typedef struct { v_aresta arestas; double sol; }solucao_t;
 
-solucao_t kruskal(FILE *entrada);
+solucao_t kruskal(FILE *entrada, int estrutura);
 
 #endif

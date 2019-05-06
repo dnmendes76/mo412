@@ -32,7 +32,7 @@ lista_arestas_t monta_grafo(FILE *entrada) {
   return ret;
 }
 
-solucao_t kruskal(FILE *entrada){
+solucao_t kruskal(FILE *entrada, int estrutura) {
   int i, u, v;
   double p;
   lista_arestas_t grafo;

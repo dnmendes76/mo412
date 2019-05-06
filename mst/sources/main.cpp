@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   estrutura = atoi(argv[2]);
   entrada = fopen(argv[3], "r");
   saida = fopen(argv[4], "w+");
-  if (strcmp(algoritmo, "kruskal") == 0) ans = kruskal(entrada);
+  if (strcmp(algoritmo, "kruskal") == 0) ans = kruskal(entrada, estrutura);
   escreve_arquivo(ans, saida);
   return 0;
 }
