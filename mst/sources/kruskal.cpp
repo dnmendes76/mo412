@@ -1,55 +1,69 @@
 #include "kruskal.h"
 
-void make_set(int x, vi &pai, vi &ra) { pai[x] = x; ra[x] = 0; }
-
-int find_set(int i, vi &pai) { return (pai[i] == i) ? i : (pai[i] = find_set(pai[i], pai)); }
-
-int isSameSet(int i, int j, vi &pai) { return find_set(i, pai) == find_set(j, pai);  }
-
-void union_set(int i, int j, vi &pai, vi &ra) {
-  int x, y;
-  if (!isSameSet(i, j, pai)) {
-    x = find_set(i, pai); y = find_set(j, pai);
-    if (ra[x] > ra[y]) pai[y] = x;
-    else {
-      pai[x] = y;
-      if (ra[x] == ra[y]) ra[y]++;
-    }
-  }
+void make_set(int x, vi &parent, vi &rank) {
+    parent[x] = x;
+    rank[x] = 0;
 }
 
-bool compara(aresta_t i, aresta_t j) { return (i.peso - j.peso < EPS); }
-
-lista_arestas_t monta_grafo(FILE *entrada) {
-  int m, u, v, i;
-  double p;
-  lista_arestas_t ret;
-  fscanf(entrada, "%d %d", &ret.ordem, &m);
-  for (i = 0; i < m; i++) {
-    fscanf(entrada, "%d %d %lf", &u, &v, &p);
-    ret.arestas.push_back(aresta_t(u, v, p));
-  }
-  return ret;
+int find_set(int i, vi &parent) {
+    return (parent[i] == i) ? i : (parent[i] = find_set(parent[i], parent));
 }
 
-solucao_t kruskal(FILE *entrada, int estrutura) {
-  int i, u, v;
-  double p;
-  lista_arestas_t grafo;
-  solucao_t ret;
-  ret.sol = 0;
-  grafo = monta_grafo(entrada);
-  vi pai(grafo.ordem); vi ra(grafo.ordem);
-  for (i = 0; i < grafo.ordem; i++) make_set(i, pai, ra);
-  sort(grafo.arestas.begin(), grafo.arestas.end(), compara);
-  for (i = 0; i < (int)grafo.arestas.size(); i++) {
-    u = grafo.arestas[i].u; v = grafo.arestas[i].v; p = grafo.arestas[i].peso;
-    if (find_set(u, pai) != find_set(v, pai)) {
-      union_set(u, v, pai, ra);
-      ret.sol += p;
-      ret.arestas.push_back(aresta_t(u, v, p));
+int same_set(int i, int j, vi &parent) {
+    return find_set(i, parent) == find_set(j, parent);
+}
+
+void union_set(int i, int j, vi &parent, vi &rank) {
+    int x, y;
+    if (!same_set(i, j, parent)) {
+        x = find_set(i, parent);
+        y = find_set(j, parent);
+        if (rank[x] > rank[y]) {
+            parent[y] = x;
+        } else {
+            parent[x] = y;
+            if (rank[x] == rank[y]) ra[y]++;
+        }
     }
-  }
-  return ret;
+}
+
+bool compare(edge_t i, edge_t j) {
+    return (i.weight - j.weight < EPS);
+}
+
+edges_list_t make_graph(FILE *input_file) {
+    int m, u, v, i;
+    double p;
+    edges_list_t ret;
+    fscanf(input_file, "%d %d", &ret.order, &m);
+    for (i = 0; i < m; i++) {
+        fscanf(input_file, "%d %d %lf", &u, &v, &p);
+        ret.edges.push_back(edge_t(u, v, p));
+    }
+    return ret;
+}
+
+solution_t kruskal(FILE *input_file, int structure) {
+    int i, u, v;
+    double p;
+    edges_list_t graph;
+    solution_t ret;
+    ret.sol = 0;
+    graph = make_graph(input_file);
+    vi parent(graph.order);
+    vi rank(graph.order);
+    for (i = 0; i < graph.order; i++) make_set(i, parent, rank);
+    sort(graph.edges.begin(), graph.edges.end(), compare);
+    for (i = 0; i < (int) graph.edges.size(); i++) {
+        u = graph.edges[i].u;
+        v = graph.edges[i].v;
+        p = graph.edges[i].weight;
+        if (find_set(u, parent) != find_set(v, parent)) {
+            union_set(u, v, parent, rank);
+            ret.solution += p;
+            ret.edges.push_back(edge_t(u, v, p));
+        }
+    }
+    return ret;
 }
 

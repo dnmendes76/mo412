@@ -9,14 +9,19 @@ using namespace std;
 
 #define EPS 10e-9
 
-struct aresta_t { int u, v; double peso; aresta_t() {}
-aresta_t(int _u, int _v, double _peso): u(_u), v(_v), peso(_peso) {} };
+struct edge_t {
+    int u, v;
+    double weight;
+
+edge_t() {}
+
+edge_t(int _u, int _v, double _weight) : u(_u), v(_v), weight(_weight) {} };
 
 typedef vector<int>vi;
-typedef vector<aresta_t>v_aresta;
-typedef struct { v_aresta arestas; int ordem; }lista_arestas_t;
-typedef struct { v_aresta arestas; double sol; }solucao_t;
+typedef vector<edge_t>v_edge;
+typedef struct { v_edge edges; int order; } edges_list_t;
+typedef struct { v_edge edges; double sol; } solution_t;
 
-solucao_t kruskal(FILE *entrada, int estrutura);
+solution_t kruskal(FILE *input_file, int structure);
 
 #endif
