@@ -22,7 +22,7 @@ void union_set(int i, int j, vi &parent, vi &rank) {
             parent[y] = x;
         } else {
             parent[x] = y;
-            if (rank[x] == rank[y]) ra[y]++;
+            if (rank[x] == rank[y]) rank[y]++;
         }
     }
 }
@@ -60,7 +60,7 @@ solution_t kruskal(FILE *input_file, int structure) {
         p = graph.edges[i].weight;
         if (find_set(u, parent) != find_set(v, parent)) {
             union_set(u, v, parent, rank);
-            ret.solution += p;
+            ret.sol += p;
             ret.edges.push_back(edge_t(u, v, p));
         }
     }

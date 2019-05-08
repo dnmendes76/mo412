@@ -3,29 +3,31 @@
 #include <stdlib.h>
 #include "kruskal.h"
 
-const int TAM_PALAVRA = 112;
+const int WORD_SIZE = 112;
 
-void escreve_arquivo(solucao_t grafo, FILE *saida) {
+void write_archive(solution_t graph, FILE *output_archive) {
   int i;
-  fprintf(saida, "%.2lf\n", grafo.sol);
-  for (i = 0; i < (int)grafo.arestas.size(); i++)
-    fprintf(saida, "%d %d %.2lf\n", grafo.arestas[i].u, grafo.arestas[i].v, grafo.arestas[i].peso);
+  fprintf(output_archive, "%.2lf\n", graph.sol);
+  for (i = 0; i < (int) graph.edges.size(); i++)
+    fprintf(output_archive, "%d %d %.2lf\n", graph.edges[i].u, graph.edges[i].v, graph.edges[i].weight);
 }
 
 int main(int argc, char *argv[]) {
-  int estrutura;
-  char algoritmo[TAM_PALAVRA];
-  FILE *entrada, *saida;
-  solucao_t ans;
+  int structure;
+  char algorithm[WORD_SIZE];
+  FILE *input, *output;
+  solution_t ans;
+
   if (argc != 5) {
     printf("Informe 4 argumentos.\n");
     return 0;
   }
-  strcpy(algoritmo, argv[1]);
-  estrutura = atoi(argv[2]);
-  entrada = fopen(argv[3], "r");
-  saida = fopen(argv[4], "w+");
-  if (strcmp(algoritmo, "kruskal") == 0) ans = kruskal(entrada, estrutura);
-  escreve_arquivo(ans, saida);
+
+  strcpy(algorithm, argv[1]);
+  structure = atoi(argv[2]);
+  input = fopen(argv[3], "r");
+  output = fopen(argv[4], "w+");
+  if (strcmp(algorithm, "kruskal") == 0) ans = kruskal(input, structure);
+  write_archive(ans, output);
   return 0;
 }
