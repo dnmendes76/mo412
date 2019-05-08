@@ -1,4 +1,5 @@
 #include "kruskal.h"
+// TODO: Change this file to OO using the class Graph and union_find
 
 void make_set(int x, vi &parent, vi &rank) {
     parent[x] = x;
@@ -50,10 +51,13 @@ solution_t kruskal(FILE *input_file, int structure) {
     solution_t ret;
     ret.sol = 0;
     graph = make_graph(input_file);
+
     vi parent(graph.order);
     vi rank(graph.order);
+
     for (i = 0; i < graph.order; i++) make_set(i, parent, rank);
     sort(graph.edges.begin(), graph.edges.end(), compare);
+
     for (i = 0; i < (int) graph.edges.size(); i++) {
         u = graph.edges[i].u;
         v = graph.edges[i].v;
