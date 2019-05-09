@@ -14,14 +14,6 @@ public:
 };
 
 class MST_Kruskal{
-
-	vector<int> parent;
-	vector<int> rank;
-	void make_set(int x);
-	int find_set(int i);
-	bool same_set(int i, int j);
-	void union_set(int i, int j);
-
 public:
 
 	Graph graph;
