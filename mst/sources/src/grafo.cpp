@@ -7,11 +7,13 @@ void Graph::load_grafo(string path){
 	file.open(path, fstream::in);
 	file >> n >> m;
 
-	Aresta e;
+	Aresta e, aux;
 	adj.resize(n);
 	for(int i=0; i<m; i++){
 		file >> e.u >> e.v >> e.peso;
 		adj[e.u].push_back(e);
+		aux.u = e.v; aux.v = e.u; aux.peso = e.peso; // To Do - padronizar, grafo direcionado ou não..
+		adj[e.v].push_back(aux);
 	}
 
 	cout << "Arquivo Carregado" << endl;
