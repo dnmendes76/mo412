@@ -1,5 +1,5 @@
-#include "../inc/kruskal.h"
-#include "../inc/heap_binary.h"
+//#include "../inc/kruskal.h"
+#include "../inc/prim.h"
 
 int main(int argc, char const *argv[]){
     if (argc != 5) {
@@ -10,25 +10,23 @@ int main(int argc, char const *argv[]){
     Graph graph;
     graph.load_grafo(argv[3]);
 
-    MST_Kruskal mst(graph);
-    Soluction soluction = mst.solve();
+    MST_Prim mst(graph);
+    Soluction soluction = mst.solve(0);
 
     cout << soluction.valor << endl;
 
     graph.print_grafo();
 
-    /*
-    vector<double> valores;
-    valores.push_back(0.5);
-    valores.push_back(7.0);
-    valores.push_back(2.0);
-    valores.push_back(3.0);
-
-    HeapBinary h(20); 
-    h.build_heap(valores);
+/*
+    HeapBinary h(20);
+    h.valores[0] = 3;
+    h.valores[1] = 0.5;
+    h.valores[2] = 2;
+    h.valores[3] = 5; 
+    h.build_heap(4);
     h.heap_insert(3); 
     h.heap_insert(2);
-    h.heap_insert(5); 
+    h.heap_insert(1); 
     h.heap_insert(4); 
     h.heap_insert(45); 
     cout << h.extract_min() << " "; 
@@ -36,6 +34,7 @@ int main(int argc, char const *argv[]){
     h.decrease_key(2, 1); 
     cout << h.extract_min() <<endl; 
     cout << h.extract_min() <<endl; 
-*/
+
+    */
     return 0;
 }

@@ -38,15 +38,7 @@ void HeapBinary::heapfy(int i) {
     } 
 }
 
-void HeapBinary::build_heap(vector<double> data){
-	int n = data.size();
-	if(n > tamMax) {
-		cout << "\nSorry!! data very big :| \n"; 
-        exit(0); 
-	}
-	for(int i = 0; i<n; i++){
-		valores[i] = data[i];
-	}
+void HeapBinary::build_heap(int n){
 	size = n;
 	for(int i = floor(n/2)-1; i >= 0; i--){
 		heapfy(i);

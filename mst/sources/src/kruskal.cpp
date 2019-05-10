@@ -10,11 +10,18 @@ Soluction MST_Kruskal::solve(){
 	UnionFind set(graph.n);
 	for(int i=0; i<graph.n; i++) 
 		set.make_set(i);
-	sort(graph.arestas.begin(), graph.arestas.end());
+	vector<Aresta> arestas;
+	for(int i=0; i<graph.n; i++){
+		for(int j=0; j<graph.adj[i].size(); j++){
+			Aresta e = graph.adj[i][j];
+			arestas.push_back(e);
+		}
+	}
+	sort(arestas.begin(), arestas.end());
 
 	Soluction soluction;
 	for (int i=0; i<graph.m; i++) {
-		Aresta e = graph.arestas[i];
+		Aresta e = arestas[i];
 		if(set.find_set(e.u) != set.find_set(e.v)) {
 			set.union_set(e.u, e.v);
 			soluction.valor += e.peso;

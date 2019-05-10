@@ -28,7 +28,7 @@ class Graph{
 public:
 	int n;
 	int m;
-	vector<Aresta> arestas;
+	vector<vector<Aresta>> adj;
 
 	Graph(){
 	}
