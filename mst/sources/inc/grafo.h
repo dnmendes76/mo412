@@ -33,6 +33,6 @@ public:
 	Graph(){
 	}
 
-	void loadGrafo(string path);
-	void printGraph();
+	void load_grafo(string path);
+	void print_grafo();
 };

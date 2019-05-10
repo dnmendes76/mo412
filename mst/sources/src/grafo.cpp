@@ -1,6 +1,6 @@
 #include "../inc/grafo.h"
 
-void Graph::loadGrafo(string path){
+void Graph::load_grafo(string path){
 	cout << "Lendo Arquivo" << endl;
 	
 	ifstream file;
@@ -17,7 +17,7 @@ void Graph::loadGrafo(string path){
 	file.close();
 }
 
-void Graph::printGraph(){
+void Graph::print_grafo(){
 	for(int i=0; i<m; i++){
 		Aresta e = arestas[i];
 		cout << '(' << e.u << ',' << e.v << ") - " << e.peso << endl;
