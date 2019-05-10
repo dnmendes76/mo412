@@ -10,10 +10,6 @@ public:
 	double valor;
 	int indice;
 	Node() {};
-
-	bool operator < (const Node& node) const{
-		return (this->valor - node.valor < 10e-9);
-	}
 };
 
 class HeapBinary{

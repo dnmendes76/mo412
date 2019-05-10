@@ -28,9 +28,9 @@ void HeapBinary::heapfy(int i) {
 	int l = left(i); 
     int r = right(i); 
     int smallest = i; 
-    if(l <= size && valores[l] < valores[smallest]) 
+    if(l <= size && valores[l].valor < valores[smallest].valor) 
         smallest = l; 
-    if(r < size && valores[r] < valores[smallest]) 
+    if(r < size && valores[r].valor < valores[smallest].valor) 
         smallest = r; 
     if(smallest != i) { 
         swap(&valores[i], &valores[smallest]); 
@@ -53,7 +53,7 @@ void HeapBinary::heap_insert(Node valor) {
     int i = size;
     valores[i] = valor;
     size++;
-    while (i != 0 && valores[i] < valores[parent(i)] ) { 
+    while (i != 0 && valores[i].valor < valores[parent(i)].valor ) { 
        swap(&valores[i], &valores[parent(i)]); 
        i = parent(i); 
     } 
@@ -73,12 +73,12 @@ Node HeapBinary::extract_min() {
 }
 
 void HeapBinary::decrease_key(int i, Node key) {
-	if(valores[i] < key){
+	if(valores[i].valor < key.valor){
 		cout << "Erro - Key not Valid! :(" << endl;
 		exit(0);
 	}
 	valores[i] = key;
-	while(i > 0 && valores[i] < valores[parent(i)]) {
+	while(i > 0 && valores[i].valor < valores[parent(i)].valor) {
 		swap(&valores[i], &valores[parent(i)]);
 		i = parent(i);
 	}

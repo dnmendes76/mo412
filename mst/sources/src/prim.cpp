@@ -31,11 +31,13 @@ Soluction MST_Prim::solve(int root) {
 		parent[i]= -1;
 		visited[i] = false;
 	} 
+
 	temp.indice = root; temp.valor = 0.0;
 	heap.valores[root] = temp;
 	visited[root] = true;
 	heap.build_heap(graph.n);
 
+	Soluction soluction;
 	while(heap.size > 0) {
 		Node u = heap.extract_min();
 		vector<Aresta>::iterator e;
@@ -47,6 +49,12 @@ Soluction MST_Prim::solve(int root) {
 			}
 		}
 		visited[u.indice] = true;
+		if(parent[u.indice] != -1) {
+			Aresta e;
+			e.u = parent[u.indice]; e.v = u.indice; e.peso = graph.adj[e.u][e.v].peso;
+			soluction.arestas.push_back(e);
+			soluction.valor += e.peso;
+		}
 	}
-	return obter_soluction();
+	return soluction;
 }
