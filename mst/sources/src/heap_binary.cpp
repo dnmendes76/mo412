@@ -3,7 +3,7 @@
 HeapBinary::HeapBinary(int tamMax) {
 	this->tamMax = tamMax;
 	this->size = 0;
-	this->valores = new double[tamMax];
+	this->valores.resize(tamMax);
 }
 
 int HeapBinary::parent(int i) {
@@ -18,8 +18,8 @@ int HeapBinary::right(int i) {
 	return (2*i + 2); 
 }
 
-void swap(double *x, double *y) { 
-    double temp = *x; 
+void swap(Node *x, Node *y) { 
+    Node temp = *x; 
     *x = *y; 
     *y = temp; 
 } 
@@ -45,7 +45,7 @@ void HeapBinary::build_heap(int n){
 	}
 }
 
-void HeapBinary::heap_insert(double valor) {
+void HeapBinary::heap_insert(Node valor) {
 	if(size == tamMax) { 
         cout << "\nSorry!! Overflow :/\n"; 
         exit(0); 
@@ -53,26 +53,26 @@ void HeapBinary::heap_insert(double valor) {
     int i = size;
     valores[i] = valor;
     size++;
-    while (i != 0 && valores[parent(i)] > valores[i]) { 
+    while (i != 0 && valores[i] < valores[parent(i)] ) { 
        swap(&valores[i], &valores[parent(i)]); 
        i = parent(i); 
     } 
 }
 
-double HeapBinary::extract_min() {
+Node HeapBinary::extract_min() {
 	if(size <= 0){
 		cout << "Erro - Heap empty! :(" << endl;
 		exit(0);
 	}
 
-	double min = valores[0];
+	Node min = valores[0];
 	valores[0] = valores[size-1];
 	size--;
 	heapfy(0);
 	return min;
 }
 
-void HeapBinary::decrease_key(int i, double key) {
+void HeapBinary::decrease_key(int i, Node key) {
 	if(valores[i] < key){
 		cout << "Erro - Key not Valid! :(" << endl;
 		exit(0);
