@@ -61,7 +61,7 @@ Node* HeapFibonacci::delete_min(Node* heap) {
 		heap = merge_node(heap->left, heap->child);
 	}
 	if(heap == NULL) return heap;
-	Node* A[heap->degree + 1] = {NULL};
+	Node* A[heap->degree+1] = {NULL};
 	Node* t = NULL;
 	do {
 		if(A[heap->degree] != NULL) {
@@ -98,7 +98,7 @@ Node* HeapFibonacci::delete_min(Node* heap) {
 	do {
 		if(heap->key < min->key) min = heap;
 		heap = heap->left;
-	}while(heap != heap);
+	}while(heap != min);
 	
 	return min;
 }
