@@ -21,7 +21,9 @@ public:
 	vector<Par> parent;
 
 	MST_Prim(Graph graph);
-	Soluction solve(int root);
+	Soluction solve_vector(int root);
+	Soluction solve_heap_binary(int root);
+	Soluction solve_heap_fibonacci(int root);
 
 };
 

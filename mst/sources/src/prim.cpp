@@ -21,14 +21,14 @@ Soluction MST_Prim::obter_soluction() {
   return soluction;
 }
 
-Soluction MST_Prim::solve(int root) {
+Soluction MST_Prim::solve_heap_binary(int root) {
   HeapBinary heap(graph.n);
   vector<bool> in_heap;
   in_heap.resize(graph.n);
   Node temp;
 
   for(int i = 0; i < graph.n; i++) {
-    temp.vertice = i; temp.valor = 11234567;
+    temp.vertice = i; temp.valor = numeric_limits<double>::max();
     heap.valores[i] = temp;
     heap.posicoes[i] = i;
     parent[i] = Par(-1, 0);

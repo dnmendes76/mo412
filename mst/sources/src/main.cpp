@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]){
     graph.load_grafo(argv[3]);
 
     MST_Prim mst(graph);
-    Soluction soluction = mst.solve(0);
+    Soluction soluction = mst.solve_heap_binary(9);
 
     cout << soluction.valor << endl;
 
