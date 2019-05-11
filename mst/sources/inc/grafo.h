@@ -1,7 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include<vector>
+#include <vector>
 
 using namespace std;
 
@@ -26,13 +26,14 @@ public:
 
 class Graph{
 public:
-	int n;
-	int m;
-	vector<vector<Aresta>> adj;
+  int n;
+  int m;
+  vector<vector<Aresta>> adj;
+  vector<Aresta> arestas;
 
-	Graph(){
-	}
+  Graph(){
+  }
 
-	void load_grafo(string path);
-	void print_grafo();
+  void load_grafo(string path);
+  void print_grafo();
 };
