@@ -3,12 +3,22 @@
 
 using namespace std;
 
+class Par{
+ public:
+  int vertice;
+  double peso;
+
+  Par() {}
+
+  Par(int v, double p) { vertice = v; peso = p; }
+};
+
 class MST_Prim{
 	Soluction obter_soluction();
 public:
 
 	Graph graph;
-	vector<int> parent;
+	vector<Par> parent;
 
 	MST_Prim(Graph graph);
 	Soluction solve(int root);

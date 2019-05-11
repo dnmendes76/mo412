@@ -8,13 +8,14 @@ using namespace std;
 class Node{
 public:
 	double valor;
-	int indice;
+    int vertice;
 	Node() {};
 };
 
 class HeapBinary{
 public:
 	vector<Node> valores;
+    vector<int> posicoes;
 	int size;
 	int tamMax;
 
