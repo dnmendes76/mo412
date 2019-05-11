@@ -7,11 +7,11 @@ VPATH=./sources/src
 TARGET=main
 
 #adicionar os .h's
-_DEPS = grafo.h kruskal.h union_find.h heap_binary.h soluction.h prim.h
+_DEPS = grafo.h kruskal.h union_find.h heap_binary.h soluction.h prim.h heap_fibonacci.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 # adicionar o nome dos .o's
-_OBJ = grafo.o main.o kruskal.o union_find.o heap_binary.o prim.o
+_OBJ = grafo.o main.o kruskal.o union_find.o heap_binary.o prim.o heap_fibonacci.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 CFLAGS=-std=c++11 -DIL_STD -O -DNDEBUG -I$(IDIR) -I$(CPLEXDIR)/include	\
