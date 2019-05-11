@@ -1,3 +1,6 @@
+#ifndef PRIM_H
+#define PRIM_H
+
 #include "soluction.h"
 #include <limits>
 
@@ -27,4 +30,4 @@ public:
 
 };
 
-
+#endif

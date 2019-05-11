@@ -1,3 +1,6 @@
+#ifndef UNION_FIND_H
+#define UNION_FIND_H
+
 #include<vector>
 
 using namespace std;
@@ -13,3 +16,5 @@ public:
 	bool same_set(int i, int j);
 	void union_set(int i, int j);
 };
+
+#endif

@@ -9,7 +9,7 @@ MST_Prim::MST_Prim(Graph graph){
 Soluction MST_Prim::obter_soluction() {
   Aresta e;
   Soluction soluction;
-  for(int i=0; i < graph.n; i++){
+  for(int i = 0; i < graph.n; i++){
     if(parent[i].vertice != -1) {
       e.u = parent[i].vertice;
       e.v = i;
@@ -22,36 +22,38 @@ Soluction MST_Prim::obter_soluction() {
 }
 
 Soluction MST_Prim::solve_heap_binary(int root) {
-  HeapBinary heap(graph.n);
-  vector<bool> in_heap;
-  in_heap.resize(graph.n);
+  HeapBinary heap(1);
+  vector<int>visitado;
+  vector<double>dist;
+  visitado.resize(graph.n);
+  dist.resize(graph.n);
   Node temp;
 
   for(int i = 0; i < graph.n; i++) {
-    temp.vertice = i; temp.valor = numeric_limits<double>::max();
-    heap.valores[i] = temp;
-    heap.posicoes[i] = i;
     parent[i] = Par(-1, 0);
-    in_heap[i] = true;
+    visitado[i] = 0;
+    dist[i] = 112345678;
   }
 
-  temp.vertice = root; temp.valor = 0.0;
-  heap.valores[root] = temp;
-  heap.build_heap(graph.n);
+  dist[root] = 0.0;
+  temp.vertice = root; temp.valor = 0.0; temp.last = -1;
+  heap.heap_insert(temp);
 
   while(heap.size > 0) {
     Node u = heap.extract_min();
+    if (visitado[u.vertice]) continue;
+    visitado[u.vertice] = 1;
+    Par tmp(u.last, dist[u.vertice]);
+    parent[u.vertice] = tmp;
     for (int i = 0; i < (int)graph.adj[u.vertice].size(); i++) {
       int v = graph.adj[u.vertice][i].v;
       double p = graph.adj[u.vertice][i].peso;
-      if (in_heap[v] && p < heap.valores[heap.posicoes[v]].valor) {
-        temp.vertice = v; temp.valor = p;
-        Par tmp(u.vertice, p);
-        parent[v] = tmp;
-        heap.decrease_key(v, temp);
+      if (dist[v] > p) {
+        dist[v] = p;
+        temp.vertice = v; temp.valor = p; temp.last = u.vertice;
+        heap.heap_insert(temp);
       }
     }
-    in_heap[u.vertice] = false;
   }
   return obter_soluction();
 }

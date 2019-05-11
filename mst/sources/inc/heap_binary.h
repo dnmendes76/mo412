@@ -1,3 +1,6 @@
+#ifndef HEAP_BINARY_H
+#define HEAP_BINARY_H
+
 #include <cmath>
 #include <iostream>
 #include <limits>
@@ -9,13 +12,13 @@ class Node{
 public:
 	double valor;
     int vertice;
+    int last;
 	Node() {};
 };
 
 class HeapBinary{
 public:
 	vector<Node> valores;
-    vector<int> posicoes;
 	int size;
 	int tamMax;
 
@@ -30,3 +33,5 @@ public:
 	void decrease_key(int i, Node key);
 
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef GRAFO_H
+#define GRAFO_H
+
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -37,3 +40,5 @@ public:
   void load_grafo(string path);
   void print_grafo();
 };
+
+#endif
