@@ -22,8 +22,28 @@ Soluction MST_Prim::obter_soluction() {
   return soluction;
 }
 
+Soluction MST_Prim::solve_heap_vector(int root) {
+  HeapVector heap(graph.n);
+  heap.build_heap(graph.n);
+  heap.decrease_key(root, 0.0);
+  for(int i = 0; i < graph.n; i++) parent[i] = Par(-1, 0);
+  while (heap.qtd_fila != 0) {
+    int u = heap.extract_min();
+    for (int i = 0; i < (int)graph.adj[u].size(); i++) {
+      int v = graph.adj[u][i].v;
+      double p = graph.adj[u][i].peso;
+      if (heap.in_heap[v] && p < heap.valores[v]) {
+        Par tmp(u, p);
+        parent[v] = tmp;
+        heap.decrease_key(v, p);
+      }
+    }
+  }
+  return obter_soluction();
+}
+
 Soluction MST_Prim::solve_heap_binary(int root) {
-  HeapBinary heap(1);
+  HeapBinary heap(graph.n);
   vector<int>visitado;
   vector<double>dist;
   visitado.resize(graph.n);
@@ -33,7 +53,7 @@ Soluction MST_Prim::solve_heap_binary(int root) {
   for(int i = 0; i < graph.n; i++) {
     parent[i] = Par(-1, 0);
     visitado[i] = 0;
-    dist[i] = 112345678;
+    dist[i] = numeric_limits<double>::max();
   }
 
   dist[root] = 0.0;
@@ -59,22 +79,4 @@ Soluction MST_Prim::solve_heap_binary(int root) {
   return obter_soluction();
 }
 
-Soluction MST_Prim::solve_heap_vector(int root) {
-  HeapVector heap(graph.n);
-  heap.build_heap(graph.n);
-  heap.decrease_key(root, 0.0);
-  for(int i = 0; i < graph.n; i++) parent[i] = Par(-1, 0);
-  while (heap.qtd_fila != 0) {
-    int u = heap.extract_min();
-    for (int i = 0; i < (int)graph.adj[u].size(); i++) {
-      int v = graph.adj[u][i].v;
-      double p = graph.adj[u][i].peso;
-      if (heap.in_heap[v] && p < heap.valores[v]) {
-        Par tmp(u, p);
-        parent[v] = tmp;
-        heap.decrease_key(v, p);
-      }
-    }
-  }
-  return obter_soluction();
-}
+

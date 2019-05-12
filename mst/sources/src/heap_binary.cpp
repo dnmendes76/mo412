@@ -1,7 +1,7 @@
 #include "../inc/heap_binary.h"
 
 HeapBinary::HeapBinary(int tamMax) {
-	this->tamMax = 11234567;
+	this->tamMax = tamMax*tamMax;
 	this->size = 0;
 	this->valores.resize(tamMax);
 }

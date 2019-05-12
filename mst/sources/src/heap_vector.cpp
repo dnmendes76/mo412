@@ -11,14 +11,14 @@ HeapVector::HeapVector(int tamMax) {
 void HeapVector::build_heap(int n){
   size = n;
   for(int i = 0; i < n; i++) {
-    valores[i] = 112345678;
+    valores[i] = numeric_limits<double>::max();
     in_heap[i] = 1;
   }
 }
 
 int HeapVector::extract_min() {
   int indice = 0;
-  double ret = 112345678;
+  double ret = numeric_limits<double>::max();
   for (int i = 0; i < size; i++) {
     if (!in_heap[i]) continue;
     if (valores[i] < ret) {
