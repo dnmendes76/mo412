@@ -1,11 +1,11 @@
 #include "../inc/heap_vector.h"
 
 HeapVector::HeapVector(int tamMax) {
-	this->tamMax = tamMax;
-	this->size = tamMax;
-    this->qtd_fila = tamMax;
-	this->valores.resize(tamMax);
-	this->in_heap.resize(tamMax);
+  this->tamMax = tamMax;
+  this->size = tamMax;
+  this->qtd_fila = tamMax;
+  this->valores.resize(tamMax);
+  this->in_heap.resize(tamMax);
 }
 
 void HeapVector::build_heap(int n){
