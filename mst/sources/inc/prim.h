@@ -26,7 +26,8 @@ public:
 	MST_Prim(Graph graph);
     Soluction solve_heap_vector(int root);
 	Soluction solve_heap_binary(int root);
-	Soluction solve_heap_fibonacci(int root);
+	Soluction solve_heap_fibonacci_use_insert(int root);
+	Soluction solve_heap_fibonacci_use_decrease(int root);
 };
 
 #endif

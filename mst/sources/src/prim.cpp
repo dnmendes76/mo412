@@ -80,7 +80,7 @@ Soluction MST_Prim::solve_heap_binary(int root) {
   return obter_soluction();
 }
 
-Soluction MST_Prim::solve_heap_fibonacci(int root){
+Soluction MST_Prim::solve_heap_fibonacci_use_insert(int root){
   HeapFibonacci heap;
 
   vector<bool> visitado;
@@ -114,3 +114,30 @@ Soluction MST_Prim::solve_heap_fibonacci(int root){
   return obter_soluction();
 }
 
+Soluction MST_Prim::solve_heap_fibonacci_use_decrease(int root){
+  HeapFibonacci heap;
+  NodeFibonacci* vertice_nodes[graph.n];
+  vector<bool> visitado;
+
+  for(int i=0; i<graph.n; i++){
+    parent[i] = Par(-1, 0);
+    visitado.push_back(false);
+    vertice_nodes[i] = heap.insert(numeric_limits<double>::max(), i);
+  }
+  heap.decrease_key(vertice_nodes[root], 0.0);
+  while(heap.size > 0) {
+    Par u(heap.H->vertice, heap.H->value);
+    heap.extract_min();
+    for(int i=0; i < (int)graph.adj[u.vertice].size(); i++) {
+      int v = graph.adj[u.vertice][i].v;
+      double peso = graph.adj[u.vertice][i].peso;
+      if(!visitado[v] && peso < vertice_nodes[v]->value) {
+        u.peso = peso;
+        parent[v] = u;
+        heap.decrease_key(vertice_nodes[v], peso);
+      }
+    }
+    visitado[u.vertice] = true;
+  }
+  return obter_soluction();
+}

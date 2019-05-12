@@ -22,8 +22,11 @@ int main(int argc, char const *argv[]){
     Soluction soluction2 = mst.solve_heap_binary(0);
     cout << soluction2.valor << endl;
 
-    Soluction soluction3 = mst.solve_heap_fibonacci(0);
+    Soluction soluction3 = mst.solve_heap_fibonacci_use_insert(0);
     cout << soluction3.valor << endl;
+
+    Soluction soluction4 = mst.solve_heap_fibonacci_use_decrease(0);
+    cout << soluction4.valor << endl;
 
 
     //graph.print_grafo();
