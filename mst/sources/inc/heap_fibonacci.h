@@ -1,3 +1,6 @@
+#ifndef HEAP_FIBONACCI_H
+#define HEAP_FIBONACCI_H
+
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
@@ -29,9 +32,12 @@ class HeapFibonacci {
 	
 public:
 	NodeFibonacci *H;
+	int size;
 
 	HeapFibonacci();
 	NodeFibonacci* insert(double key, int vertice);
 	NodeFibonacci* extract_min();
 	void decrease_key(NodeFibonacci* n, double value);
 };
+
+#endif

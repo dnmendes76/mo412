@@ -1,6 +1,7 @@
 #include "../inc/prim.h"
 #include "../inc/heap_binary.h"
 #include "../inc/heap_vector.h"
+#include "../inc/heap_fibonacci.h"
 
 MST_Prim::MST_Prim(Graph graph){
   this->graph = graph;
@@ -15,6 +16,7 @@ Soluction MST_Prim::obter_soluction() {
       e.u = parent[i].vertice;
       e.v = i;
       e.peso = parent[i].peso;
+      cout << e.u << '-' << e.v << '-' << e.peso << endl;
       soluction.arestas.push_back(e);
       soluction.valor += e.peso;
     }
@@ -79,4 +81,41 @@ Soluction MST_Prim::solve_heap_binary(int root) {
   return obter_soluction();
 }
 
+Soluction MST_Prim::solve_heap_fibonacci(int root){
+  HeapFibonacci heap;
+
+  vector<bool> visitado;
+  vector<double> dist;
+  dist.resize(graph.n);
+  visitado.resize(graph.n);
+
+  for(int i=0; i<graph.n; i++){
+    parent[i] = Par(-1, 0);
+    visitado[i] = false;
+    dist[i] = numeric_limits<double>::max();
+  }
+  heap.insert(0.0, root);
+  dist[root] = 0.0;
+
+  while(heap.size > 0) {
+    Par u(heap.H->vertice, heap.H->key);
+    heap.extract_min();
+
+    //if (visitado[u.vertice]) continue;
+    
+    for(int i=0; i < (int)graph.adj[u.vertice].size(); i++) {
+      int v = graph.adj[u.vertice][i].v;
+      double peso = graph.adj[u.vertice][i].peso;
+      if(!visitado[v] && peso < dist[v]) {
+        cout << " u " << u.vertice << " v -- " << v << " peso  -- " << peso << endl;
+        u.peso = peso;
+        parent[v] = u;
+        dist[v] = peso;
+        heap.insert(peso, v);
+      }
+    }
+    visitado[u.vertice] = true;
+  }
+  return obter_soluction();
+}
 

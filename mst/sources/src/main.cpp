@@ -16,14 +16,15 @@ int main(int argc, char const *argv[]){
     cout << sol1.valor << endl;
 
     MST_Prim mst(graph);
-    Soluction soluction = mst.solve_heap_binary(0);
+    Soluction soluction1 = mst.solve_heap_vector(0);
+    cout << soluction1.valor << endl;
 
-    cout << soluction.valor << endl;
+    Soluction soluction2 = mst.solve_heap_binary(0);
+    cout << soluction2.valor << endl;
 
-    MST_Prim mst3(graph);
-    Soluction soluction3 = mst.solve_heap_vector(0);
-
+    Soluction soluction3 = mst.solve_heap_fibonacci(0);
     cout << soluction3.valor << endl;
+
 
     //graph.print_grafo();
 

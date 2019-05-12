@@ -2,6 +2,7 @@
 
 HeapFibonacci::HeapFibonacci() {
 	this->H = NULL;
+	this->size = 0;
 }
 
 NodeFibonacci* HeapFibonacci::create_NodeFibonacci(double key, int vertice) {
@@ -46,6 +47,7 @@ void HeapFibonacci::clean_parent_and_mark(NodeFibonacci* nodeFibonacci) {
 }
 
 void HeapFibonacci::add_child_NodeFibonacci(NodeFibonacci* parent, NodeFibonacci* child) {
+	
 	child->right=child->left=child;
 	child->parent=parent;
 	parent->degree++;
@@ -62,7 +64,8 @@ NodeFibonacci* HeapFibonacci::delete_min(NodeFibonacci* heap) {
 		heap = merge_NodeFibonacci(heap->left, heap->child);
 	}
 	if(heap == NULL) return heap;
-	NodeFibonacci* A[heap->degree+1] = {NULL};
+	int degree = heap->degree;
+	NodeFibonacci* A[64] = {NULL};
 	NodeFibonacci* t = NULL;
 	do {
 		if(A[heap->degree] != NULL) {
@@ -94,13 +97,11 @@ NodeFibonacci* HeapFibonacci::delete_min(NodeFibonacci* heap) {
 		}
 		heap = heap->left;
 	} while(t != heap);
-
 	NodeFibonacci* min = heap;
 	do {
 		if(heap->key < min->key) min = heap;
 		heap = heap->left;
 	}while(heap != min);
-	
 	return min;
 }
 
@@ -122,19 +123,25 @@ NodeFibonacci* HeapFibonacci::cut(NodeFibonacci* heap, NodeFibonacci* n) {
 NodeFibonacci* HeapFibonacci::insert(double key, int vertice) {
 	NodeFibonacci* new_NodeFibonacci = create_NodeFibonacci(key, vertice);
 	H = merge_NodeFibonacci(H, new_NodeFibonacci);
+	size++;
 	return new_NodeFibonacci;
 }
 
 NodeFibonacci* HeapFibonacci::extract_min() {
 	NodeFibonacci* min = H;
 	H = delete_min(H);
+	size--;
 	return min;
 }
 
 void HeapFibonacci::decrease_key(NodeFibonacci* n, double value) {
 	if(n->key < value) exit(0);
 	n->key = value;
-	if(n->key < n->parent->key) {
+	NodeFibonacci* parent = n->parent;
+	if(parent == NULL) {
+		H = n;
+	}
+	else if(n->key < n->parent->key) {
 		H = cut(H, n);
 		NodeFibonacci* parent = n->parent;
 		n->parent = NULL;
@@ -147,5 +154,4 @@ void HeapFibonacci::decrease_key(NodeFibonacci* n, double value) {
 		if(parent!=NULL && parent->parent!= NULL) 
 			parent->mark = true;
 	}
-
 }
