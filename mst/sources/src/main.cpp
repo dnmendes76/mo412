@@ -20,6 +20,11 @@ int main(int argc, char const *argv[]){
 
     cout << soluction.valor << endl;
 
+    MST_Prim mst3(graph);
+    Soluction soluction3 = mst.solve_heap_vector(0);
+
+    cout << soluction3.valor << endl;
+
     //graph.print_grafo();
 
     return 0;
