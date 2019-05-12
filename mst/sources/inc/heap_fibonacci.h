@@ -6,31 +6,32 @@
 // https://rosettacode.org/wiki/Fibonacci_heap
 using namespace std;
 
-class Node {
+class NodeFibonacci {
 public:
-	Node *parent;
-	Node *child;
-	Node *left;
-    Node *right;
+	NodeFibonacci *parent;
+	NodeFibonacci *child;
+	NodeFibonacci *left;
+    NodeFibonacci *right;
     int degree;
     double key;
+    int vertice;
     bool mark;
-	Node() {}
+	NodeFibonacci() {}
 };
 
 class HeapFibonacci {
-	Node* create_node(double key);
-	Node* merge_node(Node* heap, Node* new_node);
-	void clean_parent_and_mark(Node* n);
-	void add_child_node(Node* parent, Node* child);
-	Node* delete_min(Node* heap);
-	Node* cut(Node* x, Node* y);
+	NodeFibonacci* create_NodeFibonacci(double key, int vertice);
+	NodeFibonacci* merge_NodeFibonacci(NodeFibonacci* heap, NodeFibonacci* new_NodeFibonacci);
+	void clean_parent_and_mark(NodeFibonacci* n);
+	void add_child_NodeFibonacci(NodeFibonacci* parent, NodeFibonacci* child);
+	NodeFibonacci* delete_min(NodeFibonacci* heap);
+	NodeFibonacci* cut(NodeFibonacci* x, NodeFibonacci* y);
 	
 public:
-	Node *H;
+	NodeFibonacci *H;
 
 	HeapFibonacci();
-	Node* insert(double key);
-	Node* extract_min();
-	void decrease_key(Node* n, double value);
+	NodeFibonacci* insert(double key, int vertice);
+	NodeFibonacci* extract_min();
+	void decrease_key(NodeFibonacci* n, double value);
 };
