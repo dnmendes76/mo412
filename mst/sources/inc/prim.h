@@ -1,3 +1,6 @@
+#ifndef PRIM_H
+#define PRIM_H
+
 #include "soluction.h"
 #include <limits>
 
@@ -24,7 +27,7 @@ public:
 	Soluction solve_vector(int root);
 	Soluction solve_heap_binary(int root);
 	Soluction solve_heap_fibonacci(int root);
-
+    Soluction solve_heap_vector(int root);
 };
 
-
+#endif

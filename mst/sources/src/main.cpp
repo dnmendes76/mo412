@@ -1,4 +1,4 @@
-//#include "../inc/kruskal.h"
+#include "../inc/kruskal.h"
 #include "../inc/prim.h"
 
 int main(int argc, char const *argv[]){
@@ -10,10 +10,20 @@ int main(int argc, char const *argv[]){
     Graph graph;
     graph.load_grafo(argv[3]);
 
+    MST_Kruskal mst2(graph);
+    Soluction sol1 = mst2.solve();
+
+    cout << sol1.valor << endl;
+
     MST_Prim mst(graph);
-    Soluction soluction = mst.solve_heap_binary(9);
+    Soluction soluction = mst.solve_heap_binary(0);
 
     cout << soluction.valor << endl;
+
+    MST_Prim mst3(graph);
+    Soluction soluction3 = mst.solve_heap_vector(0);
+
+    cout << soluction3.valor << endl;
 
     //graph.print_grafo();
 

@@ -1,3 +1,6 @@
+#ifndef GRAFO_H
+#define GRAFO_H
+
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -20,7 +23,7 @@ public:
 	}
 
 	bool operator < (const Aresta& aresta) const{
-		return (this->peso - aresta.peso < 10e-9);
+		return (this->peso < aresta.peso);
 	}
 };
 
@@ -37,3 +40,5 @@ public:
   void load_grafo(string path);
   void print_grafo();
 };
+
+#endif

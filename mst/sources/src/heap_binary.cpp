@@ -1,10 +1,9 @@
 #include "../inc/heap_binary.h"
 
 HeapBinary::HeapBinary(int tamMax) {
-	this->tamMax = tamMax;
+	this->tamMax = 11234567;
 	this->size = 0;
 	this->valores.resize(tamMax);
-    this->posicoes.resize(tamMax);
 }
 
 int HeapBinary::parent(int i) {
@@ -19,10 +18,7 @@ int HeapBinary::right(int i) {
 	return (2*i + 2);
 }
 
-void swap(Node &x, Node &y, vector<int>&pos) {
-  int aux = pos[x.vertice];
-  pos[x.vertice] = pos[y.vertice];
-  pos[y.vertice] = aux;
+void swap(Node &x, Node &y) {
   Node temp = x;
   x = y;
   y = temp;
@@ -37,7 +33,7 @@ void HeapBinary::heapfy(int i) {
     if(r < size && valores[r].valor < valores[smallest].valor)
       smallest = r;
     if(smallest != i) {
-      swap(valores[i], valores[smallest], posicoes);
+      swap(valores[i], valores[smallest]);
       heapfy(smallest);
     }
 }
@@ -54,11 +50,12 @@ void HeapBinary::heap_insert(Node valor) {
     cout << "\nSorry!! Overflow :/\n";
     exit(0);
   }
+  valores.resize(size + 1);
   int i = size;
-  valores[i] = valor;
   size++;
+  valores[i] = valor;
   while (i != 0 && valores[i].valor < valores[parent(i)].valor) {
-    swap(valores[i], valores[parent(i)], posicoes);
+    swap(valores[i], valores[parent(i)]);
     i = parent(i);
   }
 }
@@ -77,14 +74,15 @@ Node HeapBinary::extract_min() {
 }
 
 void HeapBinary::decrease_key(int i, Node key) {
-  int pos = posicoes[i];
+  int pos = i;
   if(valores[pos].valor < key.valor){
     cout << "Erro - Key not Valid! :(" << endl;
     exit(0);
   }
   valores[pos] = key;
-  while(i > 0 && valores[pos].valor < valores[parent(pos)].valor) {
-    swap(valores[pos], valores[parent(pos)], posicoes);
+  while(pos > 0 && valores[pos].valor < valores[parent(pos)].valor) {
+    cout << "pos: " << pos << "valor pos:" << valores[pos].vertice << endl;
+    swap(valores[pos], valores[parent(pos)]);
     pos = parent(pos);
   }
 }
