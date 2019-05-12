@@ -23,7 +23,7 @@ void Graph::load_grafo(string path){
 
 void Graph::print_grafo(){
   for(int i=0; i<n; i++){
-    for(int j=0; j<adj[i].size(); j++){
+    for(int j = 0; j < (int)adj[i].size(); j++){
       Aresta e = adj[i][j];
       cout << '(' << e.u << ',' << e.v << ") - " << e.peso << endl;
     }

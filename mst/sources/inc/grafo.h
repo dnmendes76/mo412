@@ -23,7 +23,7 @@ public:
 	}
 
 	bool operator < (const Aresta& aresta) const{
-		return (this->peso - aresta.peso < 10e-9);
+		return (this->peso < aresta.peso);
 	}
 };
 
