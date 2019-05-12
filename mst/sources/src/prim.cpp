@@ -16,7 +16,6 @@ Soluction MST_Prim::obter_soluction() {
       e.u = parent[i].vertice;
       e.v = i;
       e.peso = parent[i].peso;
-      cout << e.u << '-' << e.v << '-' << e.peso << endl;
       soluction.arestas.push_back(e);
       soluction.valor += e.peso;
     }
@@ -98,16 +97,12 @@ Soluction MST_Prim::solve_heap_fibonacci(int root){
   dist[root] = 0.0;
 
   while(heap.size > 0) {
-    Par u(heap.H->vertice, heap.H->key);
+    Par u(heap.H->vertice, heap.H->value);
     heap.extract_min();
-
-    //if (visitado[u.vertice]) continue;
-    
     for(int i=0; i < (int)graph.adj[u.vertice].size(); i++) {
       int v = graph.adj[u.vertice][i].v;
       double peso = graph.adj[u.vertice][i].peso;
       if(!visitado[v] && peso < dist[v]) {
-        cout << " u " << u.vertice << " v -- " << v << " peso  -- " << peso << endl;
         u.peso = peso;
         parent[v] = u;
         dist[v] = peso;

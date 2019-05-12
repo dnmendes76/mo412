@@ -13,22 +13,22 @@ class NodeFibonacci {
 public:
 	NodeFibonacci *parent;
 	NodeFibonacci *child;
-	NodeFibonacci *left;
-    NodeFibonacci *right;
+	NodeFibonacci *next;
+    NodeFibonacci *prev;
     int degree;
-    double key;
+    double value;
+    bool marked;
     int vertice;
-    bool mark;
 	NodeFibonacci() {}
 };
 
 class HeapFibonacci {
 	NodeFibonacci* create_NodeFibonacci(double key, int vertice);
-	NodeFibonacci* merge_NodeFibonacci(NodeFibonacci* heap, NodeFibonacci* new_NodeFibonacci);
+	NodeFibonacci* merge_NodeFibonacci(NodeFibonacci* a, NodeFibonacci* b);
 	void clean_parent_and_mark(NodeFibonacci* n);
 	void add_child_NodeFibonacci(NodeFibonacci* parent, NodeFibonacci* child);
-	NodeFibonacci* delete_min(NodeFibonacci* heap);
-	NodeFibonacci* cut(NodeFibonacci* x, NodeFibonacci* y);
+	NodeFibonacci* delete_min(NodeFibonacci* n);
+	NodeFibonacci* cut(NodeFibonacci* heap, NodeFibonacci* n);
 	
 public:
 	NodeFibonacci *H;
