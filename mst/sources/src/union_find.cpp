@@ -1,8 +1,8 @@
-#include "../inc/union_find.h"
+#include "union_find.h"
 
 UnionFind::UnionFind(int n) {
-	parent.resize(n);
-	rank.resize(n);
+    parent.resize(n);
+    rank.resize(n);
 }
 
 void UnionFind::make_set(int x) {

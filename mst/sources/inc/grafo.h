@@ -10,35 +10,36 @@ using namespace std;
 
 class Aresta {
 public:
-	int u;
-	int v;
-	double peso;
+    int u;
+    int v;
+    double peso;
 
-	Aresta(){}
+    Aresta() {}
 
-	Aresta(int u, int v, int peso){
-		this->u = u;
-		this->v = v;
-		this->peso = peso;
-	}
+    Aresta(int u, int v, int peso) {
+        this->u = u;
+        this->v = v;
+        this->peso = peso;
+    }
 
-	bool operator < (const Aresta& aresta) const{
-		return (this->peso < aresta.peso);
-	}
+    bool operator<(const Aresta &aresta) const {
+        return (this->peso < aresta.peso);
+    }
 };
 
-class Graph{
+class Graph {
 public:
-  int n;
-  int m;
-  vector<vector<Aresta>> adj;
-  vector<Aresta> arestas;
+    int n;
+    int m;
+    vector<vector<Aresta>> adj;
+    vector<Aresta> arestas;
 
-  Graph(){
-  }
+    Graph() {
+    }
 
-  void load_grafo(string path);
-  void print_grafo();
+    void load_grafo(string path);
+
+    void print_grafo();
 };
 
 #endif
