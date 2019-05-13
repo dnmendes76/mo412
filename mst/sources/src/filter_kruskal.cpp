@@ -59,7 +59,7 @@ void MST_Filter_Kruskal::partition(vector<Aresta> edges, vector<Aresta> *leq, ve
 vector<Aresta> MST_Filter_Kruskal::filter(vector<Aresta> edges, UnionFind *set) {
     vector<Aresta> filtered = vector<Aresta>();
     for (auto edge : edges) {
-        if (set->find_set(edge.u) != set->find_set(edge.v)) {
+        if (set->find_set_path_compression(edge.u) != set->find_set_path_compression(edge.v)) {
             filtered.push_back(edge);
         }
     }

@@ -10,19 +10,59 @@ void UnionFind::make_set(int x) {
     rank[x] = 0;
 }
 
-int UnionFind::find_set(int i) {
-    return (parent[i] == i) ? i : (parent[i] = find_set(parent[i]));
+int UnionFind::find_set_default(int i) {
+    return (parent[i] == i) ? i : find_set_default(parent[i]);
 }
 
-bool UnionFind::same_set(int i, int j) {
-    return find_set(i) == find_set(j);
+int UnionFind::find_set_path_compression(int i) {
+    return (parent[i] == i) ? i : (parent[i] = find_set_path_compression(parent[i]));
 }
 
-void UnionFind::union_set(int i, int j) {
+bool UnionFind::same_set_with_find_set_default(int i, int j) {
+    return find_set_default(i) == find_set_default(j);
+}
+
+bool UnionFind::same_set_with_find_path_compression(int i, int j) {
+    return find_set_path_compression(i) == find_set_path_compression(j);
+}
+
+void UnionFind::union_set_with_find_default(int i, int j) {
     int x, y;
-    if (!same_set(i, j)) {
-        x = find_set(i);
-        y = find_set(j);
+    x = find_set_default(i);
+    y = find_set_default(j);
+    if (x != y) {
+       parent[x] = y;
+   }
+}
+
+void UnionFind::union_set_with_path_compression(int i, int j) {
+    int x, y;
+    x = find_set_path_compression(i);
+    y = find_set_path_compression(j);
+    if (x != y) {
+       parent[x] = y;
+   }
+}
+
+void UnionFind::union_by_rank_with_find_default(int i, int j) {
+    int x, y;
+    x = find_set_default(i);
+    y = find_set_default(j);
+    if( x != y) {
+        if (rank[x] > rank[y]) {
+            parent[y] = x;
+        } else {
+            parent[x] = y;
+            if (rank[x] == rank[y]) rank[y]++;
+        }
+    }
+}
+
+void UnionFind::union_by_rank_with_path_compression(int i, int j) {
+    int x, y;
+    x = find_set_path_compression(i);
+    y = find_set_path_compression(j);
+    if( x != y) {
         if (rank[x] > rank[y]) {
             parent[y] = x;
         } else {
