@@ -43,10 +43,10 @@ int main(int argc, char const *argv[]){
             case 2:
                 soluction = mst.solve_with_heuristic_union_by_rank();
                 break;
-            case 4:
+            case 3:
                 soluction = mst.solve_with_both_heuristics();
                 break;
-            case 5:
+            case 4:
                 MST_Filter_Kruskal mst2(graph);
                 soluction = mst2.solve();
                 break;
