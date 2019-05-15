@@ -54,8 +54,7 @@ int main(int argc, char const *argv[]){
 
     } else if(alg[1].compare(argv[1]) == 0) {
         cout << argv[1] << '-' << option << endl;
-        MST_Prim mst(graph)
-
+        MST_Prim mst(graph);
         switch(option) {
             case 0:
                 soluction = mst.solve_heap_vector(0);
