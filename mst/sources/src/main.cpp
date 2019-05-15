@@ -3,7 +3,7 @@
 #include "../inc/filter_kruskal.h"
 
 void salve_soluction(Soluction soluction, string path) {
-    cout << "Salvando Soluction..." << endl;
+    //cout << "Salvando Soluction..." << endl;
     ofstream file;
     file.open(path);
     file << soluction.valor << endl;
@@ -12,7 +12,8 @@ void salve_soluction(Soluction soluction, string path) {
         e = soluction.arestas[i];
         file << e.u << ' ' << e.v << ' ' << e.peso << endl;
     }
-    cout << "Soluction salva com sucesso \\o/" << endl;
+    if(soluction.valor > 0) 
+        cout << "Soluction salva com sucesso \\o/" << endl;
     file.close();
 }
 
@@ -29,45 +30,50 @@ int main(int argc, char const *argv[]){
     int option = atoi(((string)argv[2]).c_str());
 
     if(alg[0].compare(argv[1]) == 0) {
-        cout << argv[1] << '-' << option << endl;
+        //cout << argv[1] << '-' << option << endl;
         MST_Kruskal mst(graph);
 
         switch(option) {
-            case 0:
+            case 0: {
                 soluction = mst.solve_without_heuristics();
                 //cout << soluction.valor << endl;
-                break;
-            case 1:
+                }break;
+            case 1: {
                 soluction = mst.solve_with_heuristic_path_compression();
-                break;
-            case 2:
+                }break;
+            case 2: {
                 soluction = mst.solve_with_heuristic_union_by_rank();
-                break;
-            case 3:
+                }break;
+            case 3: {
                 soluction = mst.solve_with_both_heuristics();
-                break;
-            case 4:
+                }break;
+            case 4: {
                 MST_Filter_Kruskal mst2(graph);
                 soluction = mst2.solve();
-                break;
+                }break;
+            default:
+                cout << "Invalid Option!" << endl;
         }
 
     } else if(alg[1].compare(argv[1]) == 0) {
-        cout << argv[1] << '-' << option << endl;
+        //cout << argv[1] << '-' << option << endl;
         MST_Prim mst(graph);
         switch(option) {
-            case 0:
+            case 0: {
                 soluction = mst.solve_heap_vector(0);
                 //cout << soluction.valor << endl;
-                break;
-            case 1:
+                }break;
+            case 1: {
                 soluction = mst.solve_heap_binary(0);
-                break;
-            case 2:
+                }break;
+            case 2: {
                 soluction = mst.solve_heap_fibonacci_use_insert(0);
-                break;
-            case 4:
+                }break;
+            case 3: {
                 soluction = mst.solve_heap_fibonacci_use_decrease(0);
+                }break;
+            default:
+                cout << "Invalid Option!" << endl;
                 break;
         }
 

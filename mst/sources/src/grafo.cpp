@@ -1,7 +1,7 @@
 #include "grafo.h"
 
 void Graph::load_grafo(string path) {
-    cout << "Lendo Arquivo" << endl;
+    //cout << "Lendo Arquivo" << endl;
 
     ifstream file;
     file.open(path, fstream::in);
@@ -18,7 +18,7 @@ void Graph::load_grafo(string path) {
         arestas.push_back(e);
     }
 
-    cout << "Arquivo Carregado" << endl;
+    //cout << "Arquivo Carregado" << endl;
     file.close();
 }
 
