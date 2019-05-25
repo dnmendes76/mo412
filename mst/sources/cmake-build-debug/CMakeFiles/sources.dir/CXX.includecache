@@ -1,0 +1,142 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../inc/grafo.h
+string
+-
+fstream
+-
+iostream
+-
+vector
+-
+
+../inc/union_find.h
+vector
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/filter_kruskal.h
+../inc/grafo.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/grafo.h
+vector
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/vector
+../inc/union_find.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/union_find.h
+../inc/kruskal.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/kruskal.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/grafo.h
+string
+-
+fstream
+-
+iostream
+-
+vector
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_binary.h
+cmath
+-
+iostream
+-
+limits
+-
+vector
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_fibonacci.h
+iostream
+-
+cmath
+-
+cstdlib
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_vector.h
+cmath
+-
+iostream
+-
+limits
+-
+vector
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/kruskal.h
+soluction.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/soluction.h
+union_find.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/union_find.h
+algorithm
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/prim.h
+soluction.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/soluction.h
+limits
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/soluction.h
+grafo.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/grafo.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/union_find.h
+vector
+-
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/filter_kruskal.cpp
+../inc/filter_kruskal.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/filter_kruskal.h
+../inc/kruskal.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/kruskal.h
+../inc/union_find.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/union_find.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/grafo.cpp
+grafo.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/grafo.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/heap_binary.cpp
+../inc/heap_binary.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_binary.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/kruskal.cpp
+../inc/kruskal.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/kruskal.h
+../inc/union_find.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/union_find.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/main.cpp
+../inc/kruskal.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/kruskal.h
+../inc/prim.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/prim.h
+../inc/filter_kruskal.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/filter_kruskal.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/prim.cpp
+../inc/prim.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/prim.h
+../inc/heap_binary.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_binary.h
+../inc/heap_vector.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_vector.h
+../inc/heap_fibonacci.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/inc/heap_fibonacci.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/union_find.cpp
+union_find.h
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/union_find.h
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/union_find_2.cpp
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/union_find_3.cpp
+
+/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/src/union_find_4.cpp
+
