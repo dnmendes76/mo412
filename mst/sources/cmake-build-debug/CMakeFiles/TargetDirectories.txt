@@ -1,3 +1,0 @@
-/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/cmake-build-debug/CMakeFiles/sources.dir
-/home/carlos/Dropbox/Algoritmos em Grafos/Implementations/mo412/mst/sources/cmake-build-debug/CMakeFiles/edit_cache.dir
