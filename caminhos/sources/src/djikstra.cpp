@@ -3,7 +3,7 @@
 //
 
 #include <heap_binary.h>
-#include "Djikstra.h"
+#include "djikstra.h"
 
 Djikstra::Djikstra(Graph *graph) {
     this->graph = graph;

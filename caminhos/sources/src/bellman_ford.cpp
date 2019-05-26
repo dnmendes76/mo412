@@ -2,9 +2,9 @@
 // Created by carlos on 25/05/19.
 //
 
-#include "Bellman_Ford.h"
+#include "bellman_ford.h"
 
-Bellman_Ford::Bellman_Ford(Graph *graph) {
+BellmanFord::BellmanFord(Graph *graph) {
     this->graph = graph;
 
     this->distance = vector<double>(graph->n);
@@ -15,14 +15,14 @@ Bellman_Ford::Bellman_Ford(Graph *graph) {
     distance[graph->s] = 0;
 }
 
-void Bellman_Ford::relax(int u, int v) {
+void BellmanFord::relax(int u, int v) {
     if (distance[v] > distance[u] + graph->get_weight(u, v)) {
         distance[v] = distance[u] + graph->get_weight(u, v);
         pi[v] = u;
     }
 }
 
-void Bellman_Ford::solve() {
+void BellmanFord::solve() {
     for (int i = 0; i < graph->n; i++) {
         for (Edge edge : graph->edges) {
             relax(edge.u, edge.v);
