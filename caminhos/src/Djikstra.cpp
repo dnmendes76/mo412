@@ -10,22 +10,22 @@ Djikstra::Djikstra(Graph *graph) {
 
     this->distance = vector<double>(graph->n);
     this->pi = vector<int>(graph->n);
-    for (int i = 0; i < graph->n; i++)
-        distance[i] = INT32_MAX, pi[i] = -1;
-
-    distance[graph->s] = 0;
-
     heap = new HeapBinary(graph->n);
-    for (int i = 0; i < graph->n; ++i) {
+    for (int i = 0; i < graph->n; i++) {
+        distance[i] = INT32_MAX, pi[i] = -1;
         Node node;
         node.vertice = i, node.valor = distance[i];
         heap->heap_insert(node);
     }
+
+    distance[graph->s] = 0;
+    Node node;
+    node.vertice = graph->s, node.valor = distance[0];
+    heap->decrease_key(graph->s, node);
+
 }
 
 void Djikstra::relax(int u, int v, int heap_position) {
-    int aux;
-    if (v < u) aux = u, u = v, v = aux;
     if (distance[v] > distance[u] + graph->get_weight(u, v)) {
         distance[v] = distance[u] + graph->get_weight(u, v);
         Node node;
@@ -42,9 +42,8 @@ void Djikstra::solve() {
     while (heap->size > 0) {
         u = heap->extract_min();
         adj = graph->adj[u.vertice];
-        //cout << u.vertice << " - " << u.valor << endl;
         for (v = 0; v < int(adj.size()); v++) {
-            relax(u.vertice, adj[v].v, v);
+            relax(u.vertice, adj[v].v, adj[v].v);
         }
     }
 
