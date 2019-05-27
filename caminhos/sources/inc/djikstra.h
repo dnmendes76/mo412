@@ -15,5 +15,4 @@ public:
 
 };
 
-
-#endif //SHP_BELLMAN_FORD_DJIKSTRA_H
+#endif
