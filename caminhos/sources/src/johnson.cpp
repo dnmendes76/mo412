@@ -5,14 +5,18 @@
 Johnson::Johnson(Graph* graph) {
 	this->graph = graph;
 
-    this->distance = vector<double>(graph->n);
-    this->pi = vector<int>(graph->n);
+    this->distance_all_pairs = vector<vector<double>>(graph->n, vector<double>(graph->n));
+    this->pi_all_pairs = vector<vector<int>>(graph->n, vector<int>(graph->n));
     for (int i = 0; i < graph->n; i++) {
-        distance[i] = INT32_MAX;
-    	pi[i] = -1;
+    	for (int j = 0; j < graph->n; j++) {
+        	distance_all_pairs[i][j] = INT32_MAX;
+    		pi_all_pairs[i][j] = -1;
+    	}
     }
 
-    distance[graph->s] = 0;
+    for (int i = 0; i < graph->n; i++) {
+        this->distance_all_pairs[i][i] = 0;
+    }
 
 }
 

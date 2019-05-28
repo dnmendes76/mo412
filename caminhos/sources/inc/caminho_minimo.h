@@ -8,6 +8,8 @@ public:
 	Graph *graph;
     vector<double> distance;
     vector<int> pi;
+    vector<vector<int>> pi_all_pairs;
+    vector<vector<double>> distance_all_pairs;
 
     CaminhoMinimo() {}
 };

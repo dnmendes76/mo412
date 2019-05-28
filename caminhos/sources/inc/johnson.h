@@ -5,6 +5,7 @@
 
 class Johnson : public CaminhoMinimo{
 	Graph* modify_graph();
+	
 public:
 	Johnson(Graph* graph);
 	void solve();

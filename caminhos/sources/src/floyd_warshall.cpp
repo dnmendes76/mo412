@@ -1,34 +1,30 @@
-//
-// Created by carlos on 26/05/19.
-//
+#include "floyd_warshall.h"
 
-#include "Floyd_Warshall.h"
-
-Floyd_Warshall::Floyd_Warshall(Graph *graph) {
+FloydWarshall::FloydWarshall(Graph *graph) {
     this->graph = graph;
-    this->distance = vector<vector<double>>(graph->n, vector<double>(graph->n));
-    pi = vector<vector<int>>(graph->n, vector<int>(graph->n));
+    this->distance_all_pairs = vector<vector<double>>(graph->n, vector<double>(graph->n));
+    this->pi_all_pairs = vector<vector<int>>(graph->n, vector<int>(graph->n));
 
     for (int i = 0; i < graph->n; i++) {
-        this->distance[i][i] = 0;
+        this->distance_all_pairs[i][i] = 0;
     }
 }
 
-void Floyd_Warshall::solve() {
+void FloydWarshall::solve() {
     int k, i, j, n = graph->n;
     vector<vector<double>> d = vector<vector<double>>(n, vector<double>(n));
-    vector<vector<int>> pi_aux = vector<vector<int>>(n, vector<int>(n));
+    vector<vector<int>> pi_all_pairs_aux = vector<vector<int>>(n, vector<int>(n));
 
     for (i = 0; i < n; ++i) {
         for (j = 0; j < n; ++j) {
             d[i][j] = graph->adjMatrix[i][j];
-            pi_aux[i][j] = -1;
+            pi_all_pairs_aux[i][j] = -1;
             if (d[i][j] == 0)
                 d[i][j] = INT16_MAX;
             if (i == j)
                 d[i][j] = 0;
             if (i != j && graph->adjMatrix[i][j] != INT16_MAX && graph->adjMatrix[i][j] != 0)
-                pi_aux[i][j] = i;
+                pi_all_pairs_aux[i][j] = i;
         }
     }
 
@@ -37,21 +33,21 @@ void Floyd_Warshall::solve() {
         for (i = 0; i < n; ++i) {
             for (j = 0; j < n; ++j) {
                 if (d[i][k] + d[k][j] < d[i][j]) {
-                    distance[i][j] = d[i][k] + d[k][j];
-                    pi[i][j] = pi_aux[k][j];
+                    distance_all_pairs[i][j] = d[i][k] + d[k][j];
+                    pi_all_pairs[i][j] = pi_all_pairs_aux[k][j];
                 } else {
-                    distance[i][j] = d[i][j];
-                    pi[i][j] = pi_aux[i][j];
+                    distance_all_pairs[i][j] = d[i][j];
+                    pi_all_pairs[i][j] = pi_all_pairs_aux[i][j];
                 }
             }
         }
 
         for (i = 0; i < n; ++i) {
             for (j = 0; j < n; ++j) {
-                d[i][j] = distance[i][j];
-                pi_aux[i][j] = pi[i][j];
-                distance[i][j] = INT16_MAX;
-                pi[i][j] = -1;
+                d[i][j] = distance_all_pairs[i][j];
+                pi_all_pairs_aux[i][j] = pi_all_pairs[i][j];
+                distance_all_pairs[i][j] = INT16_MAX;
+                pi_all_pairs[i][j] = -1;
             }
         }
     }
@@ -73,7 +69,7 @@ void Floyd_Warshall::solve() {
     for (i = 0; i < n; ++i) {
         cout << "i - " << i << ": ";
         for (j = 0; j < n; ++j) {
-            cout << pi_aux[i][j] << " ";
+            cout << pi_all_pairs_aux[i][j] << " ";
         }
         cout << endl;
     }
@@ -92,9 +88,9 @@ void Floyd_Warshall::solve() {
                 parent = j;
                 while (parent != i) {
                     path.push_back(parent);
-                    if (pi_aux[i][parent] == -1) break;
-                    path_weight += d[pi_aux[i][parent]][parent];
-                    parent = pi_aux[i][parent];
+                    if (pi_all_pairs_aux[i][parent] == -1) break;
+                    path_weight += d[pi_all_pairs_aux[i][parent]][parent];
+                    parent = pi_all_pairs_aux[i][parent];
                 }
 
                 if (int(path.size()) == 1 && parent != i) {
