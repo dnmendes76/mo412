@@ -1,7 +1,3 @@
-//
-// Created by carlos on 25/05/19.
-//
-
 #include <heap_binary.h>
 #include "djikstra.h"
 
