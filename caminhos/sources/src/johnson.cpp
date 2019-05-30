@@ -40,25 +40,33 @@ Graph* Johnson::modify_graph() {
 	return graph_;
 }
 
+Graph* Johnson::update_graph(vector<double> distance) {
+	Graph *graph_ = new Graph();
+	int n = graph->n;
+	graph_->n = n;
+	graph_->adj.resize(n);
+	graph_->adjMatrix = vector<vector<double>>(n, vector<double>(n));
+	double peso;
+	for (Edge e : graph->edges) {
+		peso = e.weight + distance[e.u] - distance[e.v];
+		e.weight = peso;
+		graph_->adjMatrix[e.u][e.v] = e.weight;
+		graph_->adj[e.u].push_back(e);
+		graph_->edges.push_back(e);
+    }
+    return graph_;
+}
+
 void Johnson::solve() {
 	Graph *graph_ = modify_graph();
 	BellmanFord bf = BellmanFord(graph_);
 	bf.solve();
 
-	double peso;
-	Edge e;
-	for(int u=0; u<graph->n; u++) {
-		for (int v=0; v<int(graph->adj[u].size()); v++) {
-			e = graph_->adj[u][v];
-			peso = e.weight + bf.distance[e.u] - bf.distance[e.v];
-            graph->adj[e.u][e.v].weight = peso;
-            graph->adjMatrix[e.u][e.v] = peso;
-        }
-	}
+	graph_ = update_graph(bf.distance);
 
-	for(int s=0; s<graph->n; s++){
-		graph->s = s;
-		Djikstra dk = Djikstra(graph);
+	for(int s=0; s<graph_->n; s++){
+		graph_->s = s;
+		Djikstra dk = Djikstra(graph_);
 		dk.solve();
 		pi_all_pairs[s] = dk.pi;
 		distance_all_pairs[s] = dk.distance;
