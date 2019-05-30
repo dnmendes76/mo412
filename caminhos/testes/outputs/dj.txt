@@ -1,8 +1,4 @@
-custo 10 0 1 
-custo 12 0 2 
-custo 18 0 1 3 
-custo 25 0 1 3 4 
-custo 13 0 2 5 
-custo 26 0 1 3 6 
-custo 19 0 2 5 7 
-custo 28 0 1 3 6 8 
+custo inf 2 0
+custo inf 2 1
+custo inf 2 3
+custo inf 2 4

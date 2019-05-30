@@ -12,8 +12,9 @@ BellmanFord::BellmanFord(Graph *graph) {
 }
 
 void BellmanFord::relax(int u, int v) {
-    if (distance[v] > distance[u] + graph->get_weight(u, v)) {
-        distance[v] = distance[u] + graph->get_weight(u, v);
+    double dist = distance[u] + graph->get_weight(u, v);
+    if (distance[v] > dist) {
+        distance[v] = dist;
         pi[v] = u;
     }
 }
