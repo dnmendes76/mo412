@@ -63,12 +63,16 @@ void Johnson::solve() {
 	bf.solve();
 
 	graph_ = update_graph(bf.distance);
+	vector<double> aux = vector<double>(graph->n);
 
 	for(int s=0; s<graph_->n; s++){
 		graph_->s = s;
 		Djikstra dk = Djikstra(graph_);
 		dk.solve();
 		pi_all_pairs[s] = dk.pi;
-		distance_all_pairs[s] = dk.distance;
+		for(int v=0; v<graph->n; v++){
+			aux[v] = dk.distance[v] - bf.distance[s] + bf.distance[v];
+		}
+		distance_all_pairs[s] = aux;
     }
 }
