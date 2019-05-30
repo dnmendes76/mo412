@@ -1,7 +1,3 @@
-//
-// Created by carlos on 25/05/19.
-//
-
 #include "bellman_ford.h"
 
 BellmanFord::BellmanFord(Graph *graph) {
@@ -34,35 +30,6 @@ void BellmanFord::solve() {
         if (distance[v] > distance[u] + graph->get_weight(u, v)) {
             has_negative_cycle = true;
             break;
-        }
-    }
-
-    // Showing output
-    vector<int> path;
-    double path_weight;
-    int parent;
-    if (!has_negative_cycle) {
-        for (int i = 0; i < graph->n; i++) {
-            if (i != graph->s) {
-                path = vector<int>();
-                path_weight = 0;
-                parent = i;
-                while (parent != graph->s) {
-                    path.push_back(parent);
-                    if (pi[parent] == -1) break;
-                    path_weight += graph->get_weight(pi[parent], parent);
-                    parent = pi[parent];
-                }
-                if (int(path.size()) == 1 && parent != graph->s) {
-                    cout << "custo inf " << graph->s << " " << i << endl;
-                } else {
-                    cout << "custo " << path_weight << " " << graph->s << " ";
-                    for (int k = int(path.size()) - 1; k >= 0; k--) {
-                        cout << path[k] << " ";
-                    }
-                    cout << endl;
-                }
-            }
         }
     }
 }

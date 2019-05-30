@@ -6,17 +6,14 @@ void Graph::load_graph(string path) {
     ifstream file;
     file.open(path, fstream::in);
     file >> n >> m >> s;
-    Edge e, aux;
+    Edge e;
     adj.resize(n);
     adjMatrix = vector<vector<double>>(n, vector<double>(n));
+
     for (int i = 0; i < m; i++) {
         file >> e.u >> e.v >> e.weight;
-        adjMatrix[e.u][e.v] = adjMatrix[e.v][e.u] = e.weight;
+        adjMatrix[e.u][e.v] = e.weight;
         adj[e.u].push_back(e);
-        aux.u = e.v;
-        aux.v = e.u;
-        aux.weight = e.weight;
-        adj[e.v].push_back(aux);
         edges.push_back(e);
     }
 
