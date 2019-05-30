@@ -15,10 +15,15 @@ int main(int argc, char const *argv[]) {
     BellmanFord bf = BellmanFord(graph);
     bf.solve();
     bf.salve_soluction("testes/outputs/bf.txt");
+    bf.solve_two();
+    bf.salve_soluction("testes/outputs/bf2.txt");
 
     Djikstra dj = Djikstra(graph);
-    dj.solve();
-    dj.salve_soluction("testes/outputs/dj.txt");
+    dj.solve_heap_binary();
+    dj.salve_soluction("testes/outputs/dj1.txt");
+
+    dj.solve_heap_fibonacci();
+    dj.salve_soluction("testes/outputs/dj2.txt");
 
     FloydWarshall fw = FloydWarshall(graph);
     fw.solve();

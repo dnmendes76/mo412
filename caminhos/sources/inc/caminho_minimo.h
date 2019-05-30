@@ -28,7 +28,7 @@ public:
 	                if (pi[parent] == -1) break;
 	                parent = pi[parent];
 	            }
-	            if (int(path.size()) == 1 && parent != graph->s) {
+	            if (distance[i] >= INT16_MAX || (int(path.size()) == 1 && parent != graph->s)) {
 	                file << "custo inf " << graph->s << " " << i << endl;
 	            } else {
 	                file << "custo " << distance[i] << " " << graph->s << " ";
@@ -60,7 +60,7 @@ public:
 	                    parent = pi_all_pairs[i][parent];
 	                }
 
-	                if (int(path.size()) == 1 && parent != i) {
+	                if (distance_all_pairs[i][j] >= INT16_MAX || (int(path.size()) == 1 && parent != i)) {
 	                    file << "custo inf " << i << " " << j << endl;
 	                } else {
 	                    file << "custo " << distance_all_pairs[i][j] << " " << i << " ";

@@ -1,4 +1,0 @@
-custo inf 2 0
-custo inf 2 1
-custo inf 2 3
-custo inf 2 4

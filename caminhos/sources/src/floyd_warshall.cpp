@@ -10,9 +10,9 @@ FloydWarshall::FloydWarshall(Graph *graph) {
             distance_all_pairs[i][j] = graph->adjMatrix[i][j];
             pi_all_pairs[i][j] = -1;
             if(i != j && graph->adjMatrix[i][j] == 0) {
-                distance_all_pairs[i][j] = INT16_MAX;
+                distance_all_pairs[i][j] = INT32_MAX;
             }
-            if (i != j && graph->adjMatrix[i][j] != INT16_MAX && graph->adjMatrix[i][j] != 0) {
+            if (i != j && graph->adjMatrix[i][j] != INT32_MAX && graph->adjMatrix[i][j] != 0) {
                 pi_all_pairs[i][j] = i;
             }
         }

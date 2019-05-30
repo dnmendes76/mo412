@@ -68,7 +68,7 @@ void Johnson::solve() {
 	for(int s=0; s<graph_->n; s++){
 		graph_->s = s;
 		Djikstra dk = Djikstra(graph_);
-		dk.solve();
+		dk.solve_heap_binary();
 		pi_all_pairs[s] = dk.pi;
 		for(int v=0; v<graph->n; v++){
 			aux[v] = dk.distance[v] - bf.distance[s] + bf.distance[v];

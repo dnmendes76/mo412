@@ -1,43 +1,69 @@
-#include <heap_binary.h>
 #include "djikstra.h"
 
 Djikstra::Djikstra(Graph *graph) {
     this->graph = graph;
     this->distance = vector<double>(graph->n);
     this->pi = vector<int>(graph->n);
-    heap = new HeapBinary(graph->n);
+}
+
+bool Djikstra::relax(int u, int v) {
+    double dist = distance[u] + graph->get_weight(u, v);
+    if (distance[v] > dist) {
+        distance[v] = dist;
+        pi[v] = u;
+        return true;
+    }
+    return false;
+}
+
+void solve_vector() {
+    
+}
+
+void Djikstra::solve_heap_binary() {
+    HeapBinary *heap = new HeapBinary(graph->n);
+    Node node;
     for (int i = 0; i < graph->n; i++) {
-        distance[i] = INT32_MAX, pi[i] = -1;
-        Node node;
-        node.vertice = i, node.valor = distance[i];
+        distance[i] = INT16_MAX;
+        pi[i] = -1;
     }
 
     distance[graph->s] = 0;
-    Node node;
-    node.vertice = graph->s, node.valor = distance[0];
+    node.vertice = graph->s, node.valor = distance[graph->s];
     heap->heap_insert(node);
 
-}
-
-void Djikstra::relax(int u, int v, int heap_position) {
-    if (distance[v] > distance[u] + graph->get_weight(u, v)) {
-        distance[v] = distance[u] + graph->get_weight(u, v);
-        Node node;
-        node.vertice = v, node.valor = distance[v];
-        heap->heap_insert(node);
-        pi[v] = u;
-    }
-}
-
-void Djikstra::solve() {
     Node u;
-    int v;
     vector<Edge> adj;
     while (heap->size > 0) {
         u = heap->extract_min();
         adj = graph->adj[u.vertice];
-        for (v = 0; v < int(adj.size()); v++) {
-            relax(u.vertice, adj[v].v, adj[v].v);
+        for (int v = 0; v < int(adj.size()); v++) {
+            if(relax(u.vertice, adj[v].v)) {
+                node.vertice = adj[v].v, node.valor = distance[adj[v].v];
+                heap->heap_insert(node);
+            }
+        }
+    }
+}
+
+void Djikstra::solve_heap_fibonacci() {
+    HeapFibonacci heap;
+    int u, v;
+    for (int i = 0; i < graph->n; i++) {
+        distance[i] = INT16_MAX;
+        pi[i] = -1;
+    }
+
+    distance[graph->s] = 0;
+    heap.insert(0.0, graph->s);
+    while(heap.size > 0) {
+        u = heap.H->vertice;
+        heap.extract_min();
+        for(int i=0; i<(int)graph->adj[u].size(); i++) {
+            v =  graph->adj[u][i].v;
+            if(relax(u, v)){
+                heap.insert(distance[v], v);
+            }
         }
     }
 }

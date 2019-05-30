@@ -3,15 +3,17 @@
 
 #include "caminho_minimo.h"
 #include "heap_binary.h"
+#include "heap_fibonacci.h"
 
 class Djikstra : public CaminhoMinimo{
 
 public:
-    HeapBinary * heap;
     Djikstra(Graph *graph);
 
-    void relax(int u, int v, int heap_position);
-    void solve();
+    bool relax(int u, int v);
+    void solve_vector();
+    void solve_heap_binary();
+    void solve_heap_fibonacci();
 
 };
 

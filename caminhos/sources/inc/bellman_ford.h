@@ -4,15 +4,15 @@
 #include "caminho_minimo.h"
 
 class BellmanFord : public CaminhoMinimo{
+	bool relax(int u, int v);
 
 public:
     bool has_negative_cycle = false;
-
-    BellmanFord(Graph *graph);
-
-    void relax(int u, int v);
+	BellmanFord(Graph *graph);
 
     void solve();
+    void solve_two();
+
 };
 
 
