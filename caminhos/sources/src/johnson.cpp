@@ -65,6 +65,11 @@ void Johnson::solve_djikstra_vector() {
 	BellmanFord bf = BellmanFord(graph_);
 	bf.solve();
 
+	if(bf.has_negative_cycle) {
+		cout << "Graph has negative cycle! :/" << endl;
+		exit(0);
+	}
+
 	graph_ = update_graph(bf.distance);
 	vector<double> aux = vector<double>(graph->n);
 
@@ -86,6 +91,11 @@ void Johnson::solve_djikstra_heap_bin() {
 	BellmanFord bf = BellmanFord(graph_);
 	bf.solve();
 
+	if(bf.has_negative_cycle) {
+		cout << "Graph has negative cycle! :/" << endl;
+		exit(0);
+	}
+
 	graph_ = update_graph(bf.distance);
 	vector<double> aux = vector<double>(graph->n);
 
@@ -106,6 +116,11 @@ void Johnson::solve_djikstra_heap_fibo() {
 	Graph *graph_ = modify_graph();
 	BellmanFord bf = BellmanFord(graph_);
 	bf.solve();
+
+	if(bf.has_negative_cycle) {
+		cout << "Graph has negative cycle! :/" << endl;
+		exit(0);
+	}
 
 	graph_ = update_graph(bf.distance);
 	vector<double> aux = vector<double>(graph->n);
