@@ -16,8 +16,40 @@ bool Djikstra::relax(int u, int v) {
     return false;
 }
 
-void solve_vector() {
-    
+void Djikstra::solve_vector() {
+    vector<double> heap = vector<double>(graph->n);
+    vector<bool> in_heap = vector<bool>(graph->n);
+    double min;
+    int size_heap = graph->n;
+    int v, u = 0;
+    for (int i = 0; i < graph->n; i++) {
+        distance[i] = INT16_MAX;
+        pi[i] = -1;
+        heap[i] = distance[i];
+        in_heap[i] = 1;
+    }
+    heap[graph->s] = 0.0;
+    distance[graph->s] = 0;
+
+    while(size_heap != 0) {
+        min = INT16_MAX;
+        for(int i=0; i<(int)heap.size(); i++){
+            if(!in_heap[i]) continue;
+            if(heap[i] < min) {
+                u = i;
+                min = heap[i];
+            }
+        }
+        size_heap--;
+        in_heap[u] = 0;
+
+        for(int i=0; i<(int)graph->adj[u].size(); i++) {
+            v =  graph->adj[u][i].v;
+            if(relax(u, v)) {
+                heap[v] = distance[v];
+            }
+        }
+    }
 }
 
 void Djikstra::solve_heap_binary() {

@@ -25,6 +25,9 @@ int main(int argc, char const *argv[]) {
     dj.solve_heap_fibonacci();
     dj.salve_soluction("testes/outputs/dj2.txt");
 
+    dj.solve_vector();
+    dj.salve_soluction("testes/outputs/dj3.txt");
+/*
     FloydWarshall fw = FloydWarshall(graph);
     fw.solve();
     fw.salve_soluction_all_pairs("testes/outputs/fw.txt");
@@ -32,6 +35,6 @@ int main(int argc, char const *argv[]) {
 	Johnson js = Johnson(graph);
     js.solve();
     js.salve_soluction_all_pairs("testes/outputs/js.txt");
-
+*/
     return 0;
 }
