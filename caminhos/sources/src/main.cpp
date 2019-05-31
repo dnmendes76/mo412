@@ -27,14 +27,20 @@ int main(int argc, char const *argv[]) {
 
     dj.solve_vector();
     dj.salve_soluction("testes/outputs/dj3.txt");
-/*
+
     FloydWarshall fw = FloydWarshall(graph);
     fw.solve();
     fw.salve_soluction_all_pairs("testes/outputs/fw.txt");
 
 	Johnson js = Johnson(graph);
-    js.solve();
+    js.solve_djikstra_vector();
     js.salve_soluction_all_pairs("testes/outputs/js.txt");
-*/
+
+    js.solve_djikstra_heap_bin();
+    js.salve_soluction_all_pairs("testes/outputs/js2.txt");
+
+    js.solve_djikstra_heap_fibo();
+    js.salve_soluction_all_pairs("testes/outputs/js3.txt");
+
     return 0;
 }

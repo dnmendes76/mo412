@@ -6,8 +6,10 @@ Johnson::Johnson(Graph* graph) {
 	this->graph = graph;
     this->distance_all_pairs = vector<vector<double>>(graph->n, vector<double>(graph->n));
     this->pi_all_pairs = vector<vector<int>>(graph->n, vector<int>(graph->n));
-    
-    for (int i = 0; i < graph->n; i++) {
+}
+
+void Johnson::initialize() {
+	for (int i = 0; i < graph->n; i++) {
         for (int j = 0; j < graph->n; j++) {
             distance_all_pairs[i][j] = graph->adjMatrix[i][j];
             pi_all_pairs[i][j] = -1;
@@ -57,7 +59,29 @@ Graph* Johnson::update_graph(vector<double> distance) {
     return graph_;
 }
 
-void Johnson::solve() {
+void Johnson::solve_djikstra_vector() {
+	initialize();
+	Graph *graph_ = modify_graph();
+	BellmanFord bf = BellmanFord(graph_);
+	bf.solve();
+
+	graph_ = update_graph(bf.distance);
+	vector<double> aux = vector<double>(graph->n);
+
+	for(int s=0; s<graph_->n; s++){
+		graph_->s = s;
+		Djikstra dk = Djikstra(graph_);
+		dk.solve_vector();
+		pi_all_pairs[s] = dk.pi;
+		for(int v=0; v<graph->n; v++){
+			aux[v] = dk.distance[v] - bf.distance[s] + bf.distance[v];
+		}
+		distance_all_pairs[s] = aux;
+    }
+}
+
+void Johnson::solve_djikstra_heap_bin() {
+	initialize();
 	Graph *graph_ = modify_graph();
 	BellmanFord bf = BellmanFord(graph_);
 	bf.solve();
@@ -69,6 +93,27 @@ void Johnson::solve() {
 		graph_->s = s;
 		Djikstra dk = Djikstra(graph_);
 		dk.solve_heap_binary();
+		pi_all_pairs[s] = dk.pi;
+		for(int v=0; v<graph->n; v++){
+			aux[v] = dk.distance[v] - bf.distance[s] + bf.distance[v];
+		}
+		distance_all_pairs[s] = aux;
+    }
+}
+
+void Johnson::solve_djikstra_heap_fibo() {
+	initialize();
+	Graph *graph_ = modify_graph();
+	BellmanFord bf = BellmanFord(graph_);
+	bf.solve();
+
+	graph_ = update_graph(bf.distance);
+	vector<double> aux = vector<double>(graph->n);
+
+	for(int s=0; s<graph_->n; s++){
+		graph_->s = s;
+		Djikstra dk = Djikstra(graph_);
+		dk.solve_heap_fibonacci();
 		pi_all_pairs[s] = dk.pi;
 		for(int v=0; v<graph->n; v++){
 			aux[v] = dk.distance[v] - bf.distance[s] + bf.distance[v];

@@ -4,12 +4,16 @@
 #include "caminho_minimo.h"
 
 class Johnson : public CaminhoMinimo{
+	void initialize();
 	Graph* modify_graph();
 	Graph* update_graph(vector<double> distance);
 	
 public:
 	Johnson(Graph* graph);
-	void solve();
+	void solve_djikstra_vector();
+	void solve_djikstra_heap_bin();
+	void solve_djikstra_heap_fibo();
+
 };
 
 #endif
