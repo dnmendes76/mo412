@@ -1,12 +1,12 @@
-#include "djikstra.h"
+#include "dijkstra.h"
 
-Djikstra::Djikstra(Graph *graph) {
+Dijkstra::Dijkstra(Graph *graph) {
     this->graph = graph;
     this->distance = vector<double>(graph->n);
     this->pi = vector<int>(graph->n);
 }
 
-bool Djikstra::relax(int u, int v) {
+bool Dijkstra::relax(int u, int v) {
     double dist = distance[u] + graph->get_weight(u, v);
     if (distance[v] > dist) {
         distance[v] = dist;
@@ -16,7 +16,7 @@ bool Djikstra::relax(int u, int v) {
     return false;
 }
 
-void Djikstra::solve_vector() {
+void Dijkstra::solve_vector() {
     vector<double> heap = vector<double>(graph->n);
     vector<bool> in_heap = vector<bool>(graph->n);
     double min;
@@ -52,7 +52,7 @@ void Djikstra::solve_vector() {
     }
 }
 
-void Djikstra::solve_heap_binary() {
+void Dijkstra::solve_heap_binary() {
     HeapBinary *heap = new HeapBinary(graph->n);
     Node node;
     for (int i = 0; i < graph->n; i++) {
@@ -78,7 +78,7 @@ void Djikstra::solve_heap_binary() {
     }
 }
 
-void Djikstra::solve_heap_fibonacci() {
+void Dijkstra::solve_heap_fibonacci() {
     HeapFibonacci heap;
     int u, v;
     for (int i = 0; i < graph->n; i++) {

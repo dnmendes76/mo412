@@ -1,0 +1,14 @@
+No trabalho foram implementados 2 algoritmos para encontrar o caminho mínimo de um vértice fonte para os demais vértices do grafo (bellman-ford e dijkstra) e 2 algoritmos para encontrar o caminho mínimo para todo par de vértices do grafo (floyd-warshall e johnson). No total ficaram 3 variações com o algoritmo dijkstra, 2 variações com o algoritmo bellman-ford, 1 variação do algoritmo de floyd-warshall e 3 variações do algoritmo de johnson. Veja a seguir cada uma delas em mais detalhes:
+	* BellmanFord
+		0 - 
+		1 - 
+	* Dijkstra
+		0 - usando vector;
+		1 - usando heap binário;
+		2 - usando heap de fibonacci;
+	* FloydWarshall
+		0 - 
+	* Johnson
+		0 - usando vector;
+		1 - usando heap binário;
+		2 - usando heap de fibonacci;

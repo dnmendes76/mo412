@@ -5,10 +5,10 @@
 #include "heap_binary.h"
 #include "heap_fibonacci.h"
 
-class Djikstra : public CaminhoMinimo{
+class Dijkstra : public CaminhoMinimo{
 
 public:
-    Djikstra(Graph *graph);
+    Dijkstra(Graph *graph);
 
     bool relax(int u, int v);
     void solve_vector();

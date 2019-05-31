@@ -10,9 +10,9 @@ class Johnson : public CaminhoMinimo{
 	
 public:
 	Johnson(Graph* graph);
-	void solve_djikstra_vector();
-	void solve_djikstra_heap_bin();
-	void solve_djikstra_heap_fibo();
+	void solve_dijkstra_vector();
+	void solve_dijkstra_heap_bin();
+	void solve_dijkstra_heap_fibo();
 
 };
 

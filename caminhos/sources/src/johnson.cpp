@@ -1,6 +1,6 @@
 #include "johnson.h"
 #include "bellman_ford.h"
-#include "djikstra.h"
+#include "dijkstra.h"
 
 Johnson::Johnson(Graph* graph) {
 	this->graph = graph;
@@ -59,7 +59,7 @@ Graph* Johnson::update_graph(vector<double> distance) {
     return graph_;
 }
 
-void Johnson::solve_djikstra_vector() {
+void Johnson::solve_dijkstra_vector() {
 	initialize();
 	Graph *graph_ = modify_graph();
 	BellmanFord bf = BellmanFord(graph_);
@@ -75,7 +75,7 @@ void Johnson::solve_djikstra_vector() {
 
 	for(int s=0; s<graph_->n; s++){
 		graph_->s = s;
-		Djikstra dk = Djikstra(graph_);
+		Dijkstra dk = Dijkstra(graph_);
 		dk.solve_vector();
 		pi_all_pairs[s] = dk.pi;
 		for(int v=0; v<graph->n; v++){
@@ -85,7 +85,7 @@ void Johnson::solve_djikstra_vector() {
     }
 }
 
-void Johnson::solve_djikstra_heap_bin() {
+void Johnson::solve_dijkstra_heap_bin() {
 	initialize();
 	Graph *graph_ = modify_graph();
 	BellmanFord bf = BellmanFord(graph_);
@@ -101,7 +101,7 @@ void Johnson::solve_djikstra_heap_bin() {
 
 	for(int s=0; s<graph_->n; s++){
 		graph_->s = s;
-		Djikstra dk = Djikstra(graph_);
+		Dijkstra dk = Dijkstra(graph_);
 		dk.solve_heap_binary();
 		pi_all_pairs[s] = dk.pi;
 		for(int v=0; v<graph->n; v++){
@@ -111,7 +111,7 @@ void Johnson::solve_djikstra_heap_bin() {
     }
 }
 
-void Johnson::solve_djikstra_heap_fibo() {
+void Johnson::solve_dijkstra_heap_fibo() {
 	initialize();
 	Graph *graph_ = modify_graph();
 	BellmanFord bf = BellmanFord(graph_);
@@ -127,7 +127,7 @@ void Johnson::solve_djikstra_heap_fibo() {
 
 	for(int s=0; s<graph_->n; s++){
 		graph_->s = s;
-		Djikstra dk = Djikstra(graph_);
+		Dijkstra dk = Dijkstra(graph_);
 		dk.solve_heap_fibonacci();
 		pi_all_pairs[s] = dk.pi;
 		for(int v=0; v<graph->n; v++){

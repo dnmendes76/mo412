@@ -1,5 +1,4 @@
-custo 7 0 1 
-custo 9 0 2 
-custo 20 0 2 3 
-custo 20 0 2 5 4 
-custo 11 0 2 5 
+custo inf 2 0
+custo inf 2 1
+custo inf 2 3
+custo inf 2 4
