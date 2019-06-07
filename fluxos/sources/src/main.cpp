@@ -10,7 +10,7 @@ int main(int argc, char const *argv[]){
 
   Graph graph, soluction;
   graph.load_grafo(argv[2]);
-  //graph.print_grafo();
+  graph.print_grafo();
 
   Fluxo_Edmons_Karp ek(graph);
   soluction = ek.solve();
