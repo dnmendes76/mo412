@@ -1,32 +1,31 @@
 #include "grafo.h"
 
 void Graph::load_grafo(string path) {
-    //cout << "Lendo Arquivo" << endl;
+  //cout << "Lendo Arquivo" << endl;
 
-    ifstream file;
-    file.open(path, fstream::in);
-    file >> n >> m;
-    Aresta e, aux;
-    adj.resize(n);
-    for (int i = 0; i < m; i++) {
-        file >> e.u >> e.v >> e.peso;
-        adj[e.u].push_back(e);
-        aux.u = e.v;
-        aux.v = e.u;
-        aux.peso = e.peso;
-        adj[e.v].push_back(aux);
-        arestas.push_back(e);
-    }
+  ifstream file;
+  file.open(path, fstream::in);
+  file >> n >> m >> s >> t;
+  Aresta e, aux;
+  m_adj.resize(n);
+  for (int i = 0; i < n; i++) m_adj[i].resize(n);
+  for (int i = 0; i < n; i++)
+    for (int j = 0; j < n; j++)
+      m_adj[i][j] = 0;
+  for (int i = 0; i < m; i++) {
+    file >> e.u >> e.v >> e.custo;
+    m_adj[e.u][e.v] = e.custo;
+  }
 
-    //cout << "Arquivo Carregado" << endl;
-    file.close();
+  //cout << "Arquivo Carregado" << endl;
+  file.close();
 }
 
 void Graph::print_grafo() {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < int(adj[i].size()); j++) {
-            Aresta e = adj[i][j];
-            cout << '(' << e.u << ',' << e.v << ") - " << e.peso << endl;
-        }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      cout << '(' << m_adj[i][j] << ") ";
     }
+    cout << endl;
+  }
 }

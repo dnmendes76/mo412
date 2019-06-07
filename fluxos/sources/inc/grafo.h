@@ -12,34 +12,36 @@ class Aresta {
 public:
     int u;
     int v;
-    double peso;
+    double custo;
 
     Aresta() {}
 
-    Aresta(int u, int v, int peso) {
+    Aresta(int u, int v, int custo) {
         this->u = u;
         this->v = v;
-        this->peso = peso;
+        this->custo = custo;
     }
 
     bool operator<(const Aresta &aresta) const {
-        return (this->peso < aresta.peso);
+        return (this->custo < aresta.custo);
     }
 };
 
 class Graph {
 public:
-    int n;
-    int m;
-    vector<vector<Aresta>> adj;
-    vector<Aresta> arestas;
+  int n;
+  int m;
+  int s;
+  int t;
+  
+  vector<vector<int>> m_adj;
 
-    Graph() {
-    }
+  Graph() {
+  }
 
-    void load_grafo(string path);
+  void load_grafo(string path);
 
-    void print_grafo();
+  void print_grafo();
 };
 
 #endif
