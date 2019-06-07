@@ -1,5 +1,6 @@
 #include "../inc/grafo.h"
 #include "../inc/edmons_karp.h"
+#include "../inc/save.h"
 
 int main(int argc, char const *argv[]){
   if (argc != 4) {
@@ -13,6 +14,9 @@ int main(int argc, char const *argv[]){
 
   Fluxo_Edmons_Karp ek(graph);
   soluction = ek.solve();
+
+  Save salva_arquivo(soluction);
+  salva_arquivo.save_soluction(argv[2], argv[3]);
 
   for (int i = 0; i < graph.n; i++) {
     printf("[%d]: ", i);

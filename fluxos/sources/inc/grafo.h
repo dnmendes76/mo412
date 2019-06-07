@@ -33,7 +33,7 @@ public:
   int m;
   int s;
   int t;
-  
+
   vector<vector<int>> m_adj;
 
   Graph() {
