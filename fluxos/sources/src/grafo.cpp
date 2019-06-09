@@ -12,10 +12,8 @@ void Graph::load_grafo(string path) {
       m_adj[i][j] = 0;
   for (int i = 0; i < m; i++) {
     file >> e.u >> e.v >> e.custo;
+    if (m_adj[e.v][e.u]) continue;
     m_adj[e.u][e.v] += e.custo;
-  }
-  for (int i = 0; i < n; i++) {
-    m_adj[i].resize(n, 0);
   }
   file.close();
 }
