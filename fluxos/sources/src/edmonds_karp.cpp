@@ -1,10 +1,10 @@
-#include "../inc/edmons_karp.h"
+#include "../inc/edmonds_karp.h"
 
-Fluxo_Edmons_Karp::Fluxo_Edmons_Karp(Graph graph) {
+Fluxo_Edmonds_Karp::Fluxo_Edmonds_Karp(Graph graph) {
     this->graph = graph;
 }
 
-void Fluxo_Edmons_Karp::augment(int v, int min_edge) {
+void Fluxo_Edmonds_Karp::augment(int v, int min_edge) {
   if (v == graph.s) { f = min_edge; return; }
   if (p[v] != -1) {
     augment(p[v], min(min_edge, residual.m_adj[p[v]][v]));
@@ -13,7 +13,7 @@ void Fluxo_Edmons_Karp::augment(int v, int min_edge) {
   }
 }
 
-Graph Fluxo_Edmons_Karp::solve() {
+Graph Fluxo_Edmonds_Karp::solve() {
   mf = 0;
   residual.m_adj.resize(graph.n);
   for (int i = 0; i < graph.n; i++)
