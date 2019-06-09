@@ -1,5 +1,6 @@
 #include "../inc/grafo.h"
 #include "../inc/edmons_karp.h"
+#include "../inc/ford_fulkerson.h"
 #include "../inc/save.h"
 
 int main(int argc, char const *argv[]){
@@ -15,16 +16,11 @@ int main(int argc, char const *argv[]){
   Fluxo_Edmons_Karp ek(graph);
   soluction = ek.solve();
 
+  Fluxo_Edmons_Karp fk(graph);
+  soluction = fk.solve();
+
   Save salva_arquivo(soluction);
   salva_arquivo.save_soluction(argv[2], argv[3]);
 
-  //for (int i = 0; i < graph.n; i++) {
-  //  printf("[%d]: ", i);
-  //  for (int j = 0; j < graph.n; j++) {
-  //    if (graph.m_adj[i][j]) cout << "(" << soluction.m_adj[j][i] << ") ";
-  //    else cout << "(" << 0 << ") ";
-  //  }
-  //  cout << endl;
-  // }
   return 0;
 }
