@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <random>
 #include <fstream>
-#include <iomanip>  
+#include <iomanip> 
+#include <vector> 
 
 using namespace std;
 
@@ -19,10 +20,10 @@ int main(int argc, char const *argv[]) {
     string problem = (string)argv[3];
     string trabalhos[3] = {"mst", "caminhos", "fluxos"};
 
-    double A[n][n];
+    vector<vector<double>> A = vector<vector<double>>(n, vector<double>(n));
     random_device rd;
 	mt19937 gen(rd());
-	uniform_real_distribution<> dis(1.0, 200.0);
+	uniform_real_distribution<> dis(10.0, 200.0);
 
 	int m = 0;
 	for (int i = 0; i < n; i++){
@@ -39,19 +40,19 @@ int main(int argc, char const *argv[]) {
     file << n << endl;
     file << m << endl;
 
-    if(trabalhos[1].compare(argv[1]) == 0){
+    if(trabalhos[1].compare(problem) == 0){
 		file << 0 << endl;    	
     }
 
-    if(trabalhos[2].compare(argv[1]) == 0){
+    if(trabalhos[2].compare(problem) == 0){
     	file << 0 << endl; 
     	file << n-1 << endl; 
     }
 
     for (int i = 0; i < n; i++){
 		for (int j = 0; j < n; j++) {
-			if(A[i][j] != 0){
-				file << i << " " << j << " " << A[i][j] << setprecision(5) << endl; 
+			if(A[i][j] != 0 && i != j){
+				file << i << " " << j << " " << A[i][j] << setprecision(3) << endl; 
 			}
 		}
 	}
